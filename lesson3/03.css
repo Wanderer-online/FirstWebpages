@@ -1,0 +1,54 @@
+body{
+    background-color: rgb(152, 216, 184);
+}
+.pClass1{
+border: 6px;
+border-style: solid;
+}
+.pClass2{
+    border: 6px;
+    border-style: dashed;
+}
+.pClass3{
+    border: 6px;
+    border-style: dotted;
+}
+.pClass4{
+    border: 6px;
+    border-style: double;
+}
+.pClass5{
+    border: 6px;
+    border-style: groove;
+    border-color: maroon;
+}
+.pClass6{
+    border: 6px;
+    border-style: ridge;
+    border-color: maroon;
+}
+.pClass7{
+    border: 6px;
+    border-style: inset;
+    border-color: maroon;
+}
+.pClass8{
+    border: 6px;
+    border-style: outset;
+    border-color: maroon;
+}
+.pBackground1{
+background-color: azure;
+}
+.pBackground2{
+background-color: rgba(0, 136, 255, 0.205);
+}
+.pBackground3{
+background-image: url(2x2-20210820-193107.png);
+}
+.pBackground4{
+
+}
+.pBackground5{
+
+}
