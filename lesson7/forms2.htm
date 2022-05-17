@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: darkgrey;
+      }
+      .autorise {
+        display: block;
+        width: 650px;
+        background-color: white;
+        margin: auto;
+        padding: 10px;
+      }
+      .autorise legend {
+        padding: 0 30px 0 30px;
+        color: darkslategrey;
+      }
+      .autorise legend, .bold{
+        font-weight: 600;
+      }
+
+      .autorise fieldset {
+        border-top: 1px solid lightsteelblue;
+        border-bottom: none;
+        border-left: none;
+        border-right: none;
+        margin: 10px;
+        padding: 30px;
+        width: 330px;
+        margin-left: 100px;
+      }
+      /* .autorise label[content*="*"] {
+        font-weight: 600;
+      } */
+      .autorise fieldset {
+        /* width: 270px; */
+      }
+      .autorise input,
+      .autorise label,
+      .autorise select {
+        float: right;
+        margin: 5px;
+      }
+      .autorise input {
+        width: 152px;
+        /* height: 15px; */
+      }
+      .autorise select {
+        width: 160px;
+        height: 21px;
+      }
+    </style>
+  </head>
+  <body>
+    <form class="autorise">
+      <fieldset>
+        <legend>Personal information</legend>
+        <input type="text" id="FName" />
+        <label for="FName" class="bold">*First name: </label>
+        <input type="text" id="MName" />
+        <label for="MName">Middle name: </label>
+        <input type="text" id="LName" />
+        <label for="LName" class="bold">*Last name: </label>
+      </fieldset>
+      <fieldset>
+        <legend>Address</legend>
+        <input type="text" id="Address" />
+        <label for="Address">Address: </label>
+        <input type="text" id="Sity" />
+        <label for="Sity">Sity or Town: </label>
+        <select type="select" id="State">
+          <option value="" disabled selected>Choose a State</option>
+          <option value="alabama">Alabama</option>
+          <option value="alaska">Alaska</option>
+          <option value="arizona">Arizona</option>
+          <option value="arkansas">Arkansas</option>
+          <option value="california">California</option>
+          <option value="colorado">Colorado</option>
+          <option value="connecticut">Connecticut</option>
+          <option value="delaware">Delaware</option>
+          <option value="florida">Florida</option>
+          <option value="georgia">Georgia</option>
+          <option value="hawaii">Hawaii</option>
+          <option value="idaho">Idaho</option>
+          <option value="illinois">Illinois</option>
+          <option value="indiana">Indiana</option>
+          <option value="iowa">Iowa</option>
+          <option value="kansas">Kansas</option>
+          <option value="kentucky">Kentucky</option>
+          <option value="louisiana">Louisiana</option>
+          <option value="maine">Maine</option>
+          <option value="maryland">Maryland</option>
+          <option value="massachusetts">Massachusetts</option>
+          <option value="michigan">Michigan</option>
+          <option value="minnesota">Minnesota</option>
+          <option value="mississippi">Mississippi</option>
+          <option value="missouri">Missouri</option>
+          <option value="montana">Montana</option>
+          <option value="nebraska">Nebraska</option>
+          <option value="nevada">Nevada</option>
+          <option value="new hampshire">New Hampshire</option>
+          <option value="new jersey">New Jersey</option>
+          <option value="new mexico">New Mexico</option>
+          <option value="new york">New York</option>
+          <option value="north carolina">North Carolina</option>
+          <option value="north dakota">North Dakota</option>
+          <option value="ohio">Ohio</option>
+          <option value="oklahoma">Oklahoma</option>
+          <option value="oregon">Oregon</option>
+          <option value="pennsylvania">Pennsylvania</option>
+          <option value="rhode island">Rhode Island</option>
+          <option value="south carolina">South Carolina</option>
+          <option value="south dakota">South Dakota</option>
+          <option value="tennessee">Tennessee</option>
+          <option value="texas">Texas</option>
+          <option value="utah">Utah</option>
+          <option value="vermont">Vermont</option>
+          <option value="virginia">Virginia</option>
+          <option value="washington">Washington</option>
+          <option value="washington dc">Washington DC</option>
+          <option value="west virginia">West Virginia</option>
+          <option value="wisconsin">Wisconsin</option>
+          <option value="wyoming">Wyoming</option>
+        </select>
+        <label for="State">Address: </label>
+        <input type="text" id="Zip" />
+        <label for="Zip" class="bold">*Zip code: </label>
+      </fieldset>
+    </form>
+  </body>
+</html>
