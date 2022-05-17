@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .toChange {
+        background-color: forestgreen;
+      }
+      @media (max-width: 1000px) {
+        .toChange::after {
+          content: " screen width is less than 1000px";
+          color: white;
+        }
+      }
+      @media (max-height: 500px) {
+        .toChange::after {
+          content: " screen height is less than 500px";
+          color: white;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <h1 class="toChange">text</h1>
+    </section>
+  </body>
+</html>
