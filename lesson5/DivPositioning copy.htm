@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-size: 14pt;
+        margin: 15px;
+      }
+      div {
+        box-sizing: border-box;
+      }
+      p{
+        margin: 0;
+      }
+      .header {
+        width: 100%;
+        height: 80px;
+        background-color: aqua;
+        min-width: 470px;
+      }
+      .nav {
+        width: 100%;
+        height: 20px;
+        background-color: coral;
+        min-width: 470px;
+      }
+      .menu,
+      .content {
+        min-height: 500px;
+        height: calc(100vh - 192px);
+        /* цифра 192px подобрана в инспекторе браузера */
+      }
+
+      .content {
+        width: 100%;
+        min-width: 470px;
+        background-color: darkgray;
+      }
+      .menu {
+        width: 200px;
+        background-color: lightgreen;
+        float: left;
+      }
+      .footer {
+        width: 100%;
+        height: 60px;
+        background-color: dodgerblue;
+        /* position: fixed; */
+        bottom: 0px;
+        /* margin-bottom: 15px;
+        margin-right: 15px; */
+      }
+      /* .mainBlock:last-child::after {
+        content: "";
+        visibility: hidden;
+        display: block;
+        height: 0;
+        clear: both;
+      } */
+      .header > div {
+        width: 16%;
+        height: 40px;
+        border:1px solid white;
+        color: white;
+        background-color: black;
+        float: left;
+        margin: auto;
+        text-align: center;
+        padding:5px;
+        cursor: default;
+        transition: 0.4s;
+      }
+      .header > div:hover {
+        background-color:lightslategray;
+
+
+      }
+    </style>
+  </head>
+  <body>
+    <header  class="header">
+      <p>Шапка</p>
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+      <div>6</div>
+    </header>
+    <nav class="nav"><p>Блок навигации</p></nav>
+    <section class="content">
+      <div class="menu"><p>Меню</p></div>
+
+      <p>Контент</p>
+    </section>
+
+    <footer class="footer"><p>Подвал</p></footer>
+  </body>
+</html>
