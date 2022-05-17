@@ -28,11 +28,17 @@
         background-color: coral;
         min-width: 470px;
       }
+      .menu a{
+        display: block;
+        margin: 20px;
+
+      }
       .menu,
       .content {
         min-height: 500px;
         height: calc(100vh - 192px);
         /* цифра 192px подобрана в инспекторе браузера */
+        margin: auto;
       }
 
       .content {
@@ -44,6 +50,7 @@
         width: 200px;
         background-color: lightgreen;
         float: left;
+        /* padding-top: 20px; */
       }
       .footer {
         width: 100%;
@@ -64,20 +71,18 @@
       .header > div {
         width: 16%;
         height: 40px;
-        border:1px solid white;
+        border: 1px solid white;
         color: white;
         background-color: black;
         float: left;
         margin: auto;
         text-align: center;
-        padding:5px;
+        padding: 5px;
         cursor: default;
         transition: 0.4s;
       }
       .header > div:hover {
-        background-color:lightslategray;
-
-      
+        background-color: lightslategray;
       }
     </style>
   </head>
@@ -91,11 +96,26 @@
       <div>5</div>
       <div>6</div>
     </div>
-    <div class="nav"><p>Блок навигации</p></div>
+    <div class="nav">
+      <p>Блок навигации</p>
+    </div>
     <div class="content">
-      <div class="menu"><p>Меню</p></div>
+      <div class="menu"><p>Меню</p>
+        <a href="#">link</a>
+        <a href="#">link</a>
+        <a href="#">link</a>
+        <a href="#">link</a>
+        <a href="#">link</a>
+        <a href="#">link</a></div>
 
       <p>Контент</p>
+      <details>
+        <summary>show</summary>
+        <p>Контент</p>
+        <p>Контент</p>
+        <p>Контент</p>
+        <p>Контент</p>
+      </details>
     </div>
 
     <div class="footer"><p>Подвал</p></div>
