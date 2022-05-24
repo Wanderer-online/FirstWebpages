@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson8_sample1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial;
+            margin: 2vw 5vw;
+            font-size: 1vw;
+        }
+
+        .logo :first-child {
+            color: rgb(18, 192, 18);
+        }
+
+        .logo :last-child {
+            color: rgb(163, 163, 163);
+            font-size: 50%;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            background-color: rgb(18, 192, 18);
+            color: white;
+            text-decoration: none;
+            margin: 0.5vw;
+            flex: 1;
+            max-width: 10%;
+            text-align: center;
+            padding: 1vw 0px;
+        }
+
+        nav a:hover {
+            background-color: rgb(41, 60, 41);
+        }
+
+        .select {
+            background-color: rgb(5, 65, 5);
+        }
+
+        .gallery_legend {
+            border-bottom: 2px solid rgba(5, 154, 223, 0.609);
+            margin: 0 0.5vw;
+        }
+
+        .gallery_img {
+            margin: 1vw 0;
+        }
+
+        .gallery_img-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .gallery_img img {
+            width: 10%;
+            margin: 0.5vw;
+            flex: 1;
+        }
+
+        .gallery_img-lastsenter {
+            width: 30%;
+            background-image: url("https://i.postimg.cc/TYgPjggn/image10.jpg");
+            margin: 0.5vw;
+            background-position: top;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        footer {
+            background-color: rgb(18, 192, 18);
+            text-align: center;
+            padding: 1vw 0;
+            color: white;
+        }
+
+        @media (min-width: 1300px) {
+        }
+
+        @media (max-width: 500px) {
+            body { font-size: 8px; }
+            .gallery_img img { width: 90%; }
+            nav a {max-width:none; }
+            .gallery_img-lastsenter {width: 100%; height: 58vw; }
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <p>MY SITE</p>
+            <p>by NAME</p>
+        </div>
+    </header>
+    <nav>
+        <a class="select" href="#">HOME</a>
+        <a href="#">ABOUT</a>
+        <a href="#">PORTFOLIO</a>
+        <a href="#">CONTACT</a>
+    </nav>
+
+    <main>
+        <section class="gallery">
+            <p class="gallery_legend">OUR PORTFOLIO</p>
+            <div class="gallery_img">
+                <div class="gallery_img-row">
+                    <img src="https://i.postimg.cc/W1mPz7rf/image01.jpg" alt="image01"/>
+                    <img src="https://i.postimg.cc/7Lxr2TnP/image02.jpg" alt="image02"/>
+                    <img src="https://i.postimg.cc/MTHks2Lh/image03.jpg" alt="image03"/>
+                </div>
+                <div class="gallery_img-row">
+                    <img src="https://i.postimg.cc/tg2QtCB3/image04.jpg" alt="image04"/>
+                    <img src="https://i.postimg.cc/KcdzgJkZ/image05.jpg" alt="image05"/>
+                    <img src="https://i.postimg.cc/C1Q3XrTd/image06.jpg" alt="image06"/>
+                    <img src="https://i.postimg.cc/dDMzt70Y/image07.jpg" alt="image07"/>
+                </div>
+                <div class="gallery_img-row">
+                    <img src="https://i.postimg.cc/5yQhV5bg/image08.jpg" alt="image08"/>
+                    <img src="https://i.postimg.cc/gcwjJf0S/image09.jpg" alt="image09"/>
+                    <div class="gallery_img-lastsenter"> </div>
+                    <img src="https://i.postimg.cc/Z5LK2mfR/image11.jpg" alt="image11"/>
+                    <img src="https://i.postimg.cc/6pKpMqfg/image12.jpg" alt="image12"/>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>Copyright 2084 &copy Company Name</p>
+    </footer>
+</body>
+</html>

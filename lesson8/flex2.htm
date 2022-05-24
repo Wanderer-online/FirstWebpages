@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        color: white;
+        /* background-color: gray; */
+      }
+      header {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      header > h1 {
+        font-size: 28pt;
+        font-weight: 100;
+        color: rgb(0, 189, 0);
+        margin: 0 5px 0 0;
+      }
+      header > p {
+        margin: 0 0 5px 0;
+        font-size: 8pt;
+        color: rgb(58, 58, 58);
+      }
+      nav {
+        display: flex;
+        justify-content: center;
+      }
+      nav > a {
+        color: white;
+        text-decoration: none;
+        padding: 10px;
+        margin: 0 20px 0 0;
+        min-width: 100px;
+        text-align: center;
+      }
+      nav > a:hover {
+        background-color: lawngreen;
+      }
+
+      h2 {
+        font-weight: 600;
+        font-size: 20px;
+        color: #000;
+      }
+      hr {
+        border: 1px solid rgb(0, 189, 0);
+      }
+      .images {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content:space-between;
+        padding: 10px;
+      }
+      .images > img {
+        flex: 1 1
+
+      }
+       .images > img:nth-of-type(1), .images > img:nth-of-type(2), .images > img:nth-of-type(3){
+        width: 400px;
+      }
+      .images > img:nth-of-type(4), .images > img:nth-of-type(5), .images > img:nth-of-type(6), .images > img:nth-of-type(7){
+        width: 300px;
+      }
+      .images > img:nth-of-type(8), .images > img:nth-of-type(9), .images > img:nth-of-type(10), .images > img:nth-of-type(11), .images > img:nth-of-type(12){
+        width: 200px;
+      }
+      .images > img{
+        padding: 10px;
+      }
+      footer {
+        font-size: 8pt;
+        padding: 8px;
+        text-align: center;
+      }
+      .green {
+        background-color: rgb(0, 189, 0);
+      }
+      .arial {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1 class="arial">MY SITE</h1>
+      <p class="arial">by NAME</p>
+    </header>
+    <nav>
+      <a href="#" class="green">HOME</a>
+      <a href="#" class="green">ABOUT</a>
+      <a href="#" class="green">PORTFOLIO</a>
+      <a href="#" class="green">CONTACT</a>
+    </nav>
+    <main>
+      <h2 class="arial">OUR PORTFOLIO</h2>
+      <hr />
+      <div class="images">
+        <img src="img/image01.jpg" alt="image" />
+        <img src="img/image02.jpg" alt="image" />
+        <img src="img/image03.jpg" alt="image" />
+        <img src="img/image04.jpg" alt="image" />
+        <img src="img/image05.jpg" alt="image" />
+        <img src="img/image06.jpg" alt="image" />
+        <img src="img/image07.jpg" alt="image" />
+        <img src="img/image08.jpg" alt="image" />
+        <img src="img/image09.jpg" alt="image" />
+        <img src="img/image10.jpg" alt="image" />
+        <img src="img/image11.jpg" alt="image" />
+        <img src="img/image12.jpg" alt="image" />
+      </div>
+    </main>
+    <footer class="green arial">Copyright &#x00a9; 2014 Company Name</footer>
+  </body>
+</html>

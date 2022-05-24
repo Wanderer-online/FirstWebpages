@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      header,
+      footer {
+        background-color: #ececec;
+        text-align: center;
+      }
+      main {
+
+        flex-wrap: wrap;
+        flex-direction: row;
+        text-align: center;
+        padding-top: 20px;
+      }
+      .card > img {
+        width: 300px;
+        height: 150px;
+        background-color: #c0c0c0;
+        margin-top: 10px;
+      }
+      .card{
+          text-align: center;
+          /* border: 1px solid black; */
+          width: 300px;
+          height: 180px;
+          margin: 10px;
+      }
+      .galery {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+        max-width: 1300px;
+          margin: 0 auto;
+      }
+      h1 {
+        font-size: 40pt;
+        margin-bottom: 10px;
+      }
+      h1,
+      h2 {
+        font-weight: 400;
+      }
+      header {
+        padding: 30px;
+      }
+      footer {
+        padding: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>My Site</h1>
+      <p>Some text some text some text</p>
+    </header>
+    <main>
+      <h2>Some about this blocks</h2>
+      <div class="galery">
+        <div class="card">
+          Some text... <br/>
+          <img src="img/image01.jpg" alt="image" />
+        </div>
+        <!-- card end -->
+        <div class="card">
+          Some text... <br/>
+          <img src="img/image01.jpg" alt="image" />
+        </div>
+        <!-- card end -->
+        <div class="card">
+          Some text... <br/>
+          <img src="img/image01.jpg" alt="image" />
+        </div>
+        <!-- card end -->
+        <div class="card">
+          Some text... <br/>
+          <img src="img/image01.jpg" alt="image" />
+        </div>
+        <!-- card end -->
+        <div class="card">
+          Some text... <br/>
+          <img src="img/image01.jpg" alt="image" />
+        </div>
+        <!-- card end -->
+        <div class="card">
+          Some text... <br/>
+          <img src="img/image01.jpg" alt="image" />
+        </div>
+        <!-- card end -->
+        <div class="card">
+          Some text... <br/>
+          <img src="img/image01.jpg" alt="image" />
+        </div>
+        <!-- card end -->
+        <div class="card">
+          Some text... <br/>
+          <img src="img/image01.jpg" alt="image" />
+        </div>
+        <!-- card end -->
+      </div>
+    </main>
+    <footer>Footer text</footer>
+  </body>
+</html>

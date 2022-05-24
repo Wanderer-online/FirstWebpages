@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Play", sans-serif;
+        background-color: rgb(6, 10, 20);
+        color: rgb(103, 157, 193);
+        font-size: 14pt;
+        display: flex;
+        justify-content: center;
+      }
+      .notHR {
+        width: 90%;
+        height: 2px;
+
+        margin: 0;
+        background: linear-gradient(
+          90deg,
+          rgb(103, 157, 193),
+          rgba(103, 157, 193, 0.164)
+        );
+      }
+      .msgWindow,
+      .btn {
+        border: 1px solid rgb(103, 157, 193);
+      }
+      .msgWindow {
+        width: 300px;
+      }
+      h2,
+      h3 {
+        font-weight: 400;
+        margin: 5px;
+      }
+      h3 {
+        color: rgb(199, 226, 238);
+      }
+      .msgWindow,
+      form {
+        padding: 10px;
+        display: flex;
+        /* flex-direction: column; */
+        flex-wrap: wrap;
+      }
+      form {
+        justify-content: center;
+      }
+      .btn {
+        user-select: none;
+        color: rgb(158, 200, 200);
+        background: linear-gradient(
+          90deg,
+          rgba(103, 157, 193, 0.45),
+          rgba(103, 157, 193, 0.15),
+          rgba(103, 157, 193, 0.45)
+        );
+        font-size: 16pt;
+        height: 40px;
+        width: 75%;
+        align-self: center;
+        transition: 0.2s;
+        margin: 4px;
+      }
+      .btn:hover {
+        color: rgb(25, 51, 58);
+        background: rgb(0, 255, 255);
+        background: linear-gradient(
+          0deg,
+          rgba(0, 255, 255, 0) 0%,
+          rgba(0, 255, 255, 0.2) 8%,
+          rgba(0, 255, 255, 1) 50%,
+          rgba(0, 255, 255, 0.2) 92%,
+          rgba(0, 255, 255, 0) 100%
+        );
+        border-left: 3px solid rgb(195, 240, 255);
+        border-right: 3px solid rgb(195, 240, 255);
+      }
+      .btn:focus {
+        background: linear-gradient(
+          0deg,
+          rgba(0, 255, 255, 0) 0%,
+          rgba(0, 255, 255, 0.4) 8%,
+          rgba(0, 255, 255, 1) 50%,
+          rgba(0, 255, 255, 0.4) 92%,
+          rgba(0, 255, 255, 0) 100%
+        );
+      }
+
+      .slider {
+        width: 200px;
+        margin-top: 27px;
+        margin-right: 10px;
+        /* /* margin-left:-40px ; */
+justify-self: flex-start;
+        background: rgba(0, 255, 255, 0) 0%;
+        -webkit-appearance: none;
+        border-top: 1px solid rgb(103, 157, 193);
+        border-bottom: 1px solid rgb(103, 157, 193);
+        height: 6px;
+        /* align-self: center; */
+      }
+      .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 25px;
+        height: 15px;
+        border-radius: 50%;
+        border: 1px solid rgb(103, 157, 193);
+        background: rgb(103, 157, 193);
+        cursor: pointer;
+        box-shadow: inset 0px 0px 5px rgb(27, 51, 66);
+      }
+
+      .slider::-moz-range-thumb {
+        width: 25px;
+        height: 15px;
+        border-radius: 50%;
+        border: 1px solid rgb(103, 157, 193);
+        background: rgb(103, 157, 193);
+        cursor: pointer;
+      }
+      #slider-val {
+        width: 40px;
+        border: 1px solid rgb(103, 157, 193);
+        color: rgb(199, 226, 238);
+      }
+    </style>
+  </head>
+  <body>
+    <section class="msgWindow">
+      <h2>Science fiction mode</h2>
+      <div class="notHR"></div>
+      <h3>Owerview</h3>
+      <p>Just a styles for a html pages, inspired by sci-fi interfaces</p>
+      <form>
+        <button class="btn">BUTTON</button>
+        <button class="btn">BUTTON</button>
+
+          <input
+            type="range"
+            min="1"
+            max="100"
+            value="50"
+            class="slider"
+            id="myRange"
+          />
+          <p id="slider-val"></p>
+
+      </form>
+    </section>
+    <script>
+      var slider = document.getElementById("myRange");
+      var output = document.getElementById("slider-val");
+      output.innerHTML = slider.value;
+
+      slider.oninput = function () {
+        output.innerHTML = this.value;
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 1px;
+        margin: 1px;
+        justify-content: space-around;
+        min-width: 880px;
+      }
+      header {
+        font-family: "Courier New", Courier, monospace;
+        font-size: 35pt;
+        font-weight: 600;
+        display: flex;
+        width: auto;
+      }
+      header > span {
+        color: rgb(137, 206, 68);
+        font-size: 60pt;
+        padding-bottom: 30px;
+      }
+      nav {
+        padding: 10px 0 10px 10px;
+        display: flex;
+        align-items: flex-start;
+        /* border: 1px solid gray; */
+        width: calc(100% - 275px);
+        /* width: 100%; */
+      }
+      a {
+        text-decoration: none;
+      }
+      nav a {
+        background-color: rgb(137, 206, 68);
+        color: white;
+        padding: 5px 10px 10px 10px;
+        height: 16px;
+        margin: 0 1px 0 0;
+      }
+      nav a:last-child {
+        width: 100%;
+        /* background-color: red; */
+      }
+      nav a:hover {
+        background-color: rgb(159, 228, 91);
+      }
+      section {
+      }
+      .mainImage {
+        /* box-sizing: border-box; */
+        width: 500px;
+        height: 280px;
+        display: flex;
+        justify-content: end;
+        background-image: url("img2/mainNews.jpg");
+        align-self: flex-start;
+        flex-direction: column;
+      }
+      section {
+        display: flex;
+        margin-bottom: 20px;
+      }
+      .gray {
+        color: rgb(196, 196, 196);
+      }
+      .gray2 {
+        color: rgb(146, 146, 146);
+      }
+      .mainImageText {
+        /* height: 10px; */
+        background-color: rgb(137, 206, 68);
+        color: white;
+        font-size: 16pt;
+        padding-left: 10px;
+      }
+      .mainText {
+        flex-basis: calc(100% - 550px);
+        align-self: flex-start;
+
+        margin-left: 20px;
+        /* задается дочерним элементам и регулирует ширину элементов для линии, или высоту для колонки */
+      }
+      h2 {
+        margin: 0 0 15px 0;
+        line-height: 30px;
+        font-size: 22pt;
+        font-weight: 400;
+      }
+      p {
+        font-size: 13pt;
+        margin: 0 0 20px 0;
+      }
+      .cards{
+          display: flex;
+          justify-content: space-between;
+      }
+      .card {
+        width: 220px;
+      }
+      .card > a {
+        color: black;
+      }
+      .date {
+        font-family: "Courier New", Courier, monospace;
+        line-height: 30px;
+      }
+      h3 {
+        margin: 0;
+        /* line-height: 22px; */
+        font-size: 16pt;
+        font-weight: 400;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="gray"><span>BIO</span>life</header>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Services</a>
+      <a href="#">News</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <a href="#">Block&nbsp;Regions</a>
+      <a href="#">Typography</a>
+    </nav>
+    <main>
+      <section>
+        <div class="mainImage">
+          <div class="mainImageText">Mauris sodales</div>
+        </div>
+        <div class="mainText gray2">
+          <h2>Mauris sodales placerat massa</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Exercitationem, dolorem reiciendis nam ullam quo vitae harum
+            consequuntur! Neque officia dolorum quibusdam voluptatem,
+            reprehenderit vero soluta porro quos ut accusamus laborum modi non
+            alias
+          </p>
+        </div>
+      </section>
+      <h2 class="gray2">News</h2>
+      <div class="cards">
+        <div class="card gray2">
+          <img src="img2/News1.jpg" alt="" />
+          <h3>Vestibulum sed ipsum primis in faucibus orci</h3>
+          <span class="date">10.11.2011</span>
+          <p>
+            Nunc pellentesque tristique sollicitudin. Vestibulum ante ipsum
+            primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+            Aenean eu...
+          </p>
+          <a href="#">read more <span class="gray"> &gt;&gt;</span></a>
+        </div>
+        <!-- end -->
+        <div class="card gray2">
+            <img src="img2/News2.jpg" alt="" />
+            <h3>Vestibulum sed ipsum primis in faucibus orci</h3>
+            <span class="date">10.11.2011</span>
+            <p>
+              Nunc pellentesque tristique sollicitudin. Vestibulum ante ipsum
+              primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+              Aenean eu...
+            </p>
+            <a href="#">read more <span class="gray"> &gt;&gt;</span></a>
+          </div>
+          <!-- end -->
+          <div class="card gray2">
+            <img src="img2/News3.jpg" alt="" />
+            <h3>Vestibulum sed ipsum primis in faucibus orci</h3>
+            <span class="date">10.11.2011</span>
+            <p>
+              Nunc pellentesque tristique sollicitudin. Vestibulum ante ipsum
+              primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+              Aenean eu...
+            </p>
+            <a href="#">read more <span class="gray"> &gt;&gt;</span></a>
+          </div>
+          <!-- end -->
+          <div class="card gray2">
+            <img src="img2/News4.jpg" alt="" />
+            <h3>Vestibulum sed ipsum primis in faucibus orci</h3>
+            <span class="date">10.11.2011</span>
+            <p>
+              Nunc pellentesque tristique sollicitudin. Vestibulum ante ipsum
+              primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+              Aenean eu...
+            </p>
+            <a href="#">read more <span class="gray"> &gt;&gt;</span></a>
+          </div>
+          <!-- end -->
+      </div>
+    </main>
+  </body>
+</html>
