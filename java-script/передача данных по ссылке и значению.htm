@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      let a = 5,
+        b = a;
+
+      b = b + 5;
+
+      const obj = {
+        first: 5,
+        second: 1,
+        substructure: {
+          third: 0,
+          fourth: 10,
+        },
+      };
+
+      const obj2 = obj; //передача по ссылке
+      obj2.first = 10; //изменяет значение в исходном объекте!
+      console.log(obj);
+      console.log(obj2);
+
+      function obgCopy(obgectToCopy) {
+        //это называется поверхностная копия, а нужна глубокая копия
+        let objCopy = {};
+        let key;
+        for (key in obgectToCopy) {
+          objCopy[key] = obgectToCopy[key];
+        }
+        return objCopy;
+      }
+
+      const newObject = obgCopy(obj);
+      newObject.first = 55;
+      newObject.substructure.third = 1111; //вложенный объект все еще передается как ссылка!
+
+      console.log(obj);
+      console.log(newObject);
+
+      const clonedObg = Object.assign({}, obj); //вложенный объект все еще передается как ссылка!
+      clonedObg.first = 500;
+      clonedObg.substructure.third = 20;
+
+      console.log(obj);
+      console.log(clonedObg);
+
+      const oldArray = ["a", "b", "c"];
+      const newArray = oldArray.slice(); //без slice передается ссылка на исходный массив
+      newArray[2] = "d";
+
+      console.log(oldArray);
+      console.log(newArray);
+
+      //********************************
+      const video = ["youtube", "vimeo", "rutube"],
+        blogs = ["wordpress", "livejournal", "blogger"],
+        internet = [...video, ...blogs, "facebook"];//я хз как но оно вытаскивает содержимое массива
+        console.log(video);
+      console.log(blogs);
+      console.log(internet);
+   //********************************
+
+function log (a,b,c){
+    console.log(a);
+      console.log(b);
+      console.log(c);
+}
+
+const num = [2,5,7];
+log(...num);//object spread propery так это называется
+
+
+
+
+
+
+
+
+
+
+    </script>
+  </head>
+  <body></body>
+</html>
