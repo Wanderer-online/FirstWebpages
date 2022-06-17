@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function runFunction(str, calback) {
+        console.log(`string ${str}`);
+        calback();
+      }
+      function anotherFunction(){
+        console.log("another function has run by calback");
+      }
+
+      runFunction("some text", function () {// безымянная функция которая создается внутри вызова и будет вызвана runFunction()
+        console.log("function has run by calback");
+      });
+
+      runFunction("some text", anotherFunction);//anotherFunction имя вызываемой функции без ()
+
+
+    </script>
+  </head>
+  <body></body>
+</html>

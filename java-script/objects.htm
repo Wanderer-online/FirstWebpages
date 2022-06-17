@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      const objOptions = {
+        name: "text",
+        width: "1024",
+        height: "1024",
+        colors: {
+          border: "black",
+          bg: "green",
+        },
+        someOptionFunction(){
+            console.log("someOptionFunction called");
+        }
+      };
+
+objOptions.someOptionFunction();
+
+// деструктуризация - вытаскивание глубоко вложенных объектов и присвоение их значений более легкодоступным
+const {border, bg} = objOptions.colors;
+console.log(border);
+
+
+
+let counter = 0;
+
+      for (let key in objOptions) {
+        if (typeof objOptions[key] === "object") {
+          for (let key2 in objOptions[key]) {
+            console.log(`sub property ${key2} in ${objOptions[key][key2]}`);
+            counter++;
+          }
+        } else {
+          console.log(`property ${key} in ${objOptions[key]}`);
+          counter++;
+        }
+
+      }
+//***************************
+
+      console.log(objOptions.keys());//возвращает массив с всеми свойствами объекта
+      console.log(objOptions.keys().length);//возвращает количество элементов в объекте
+
+// ***************************
+      console.log(counter);
+      console.log(objOptions["colors"]["border"]);
+    </script>
+  </head>
+  <body></body>
+</html>
