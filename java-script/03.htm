@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        table,td{
+            border: 1px solid black;
+            font-size: 24px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        td{
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .bgRed{
+            background-color:lightcoral;
+        }
+        .bgBlue{
+            background-color:cadetblue;
+        }
+
+    </style>
+  </head>
+  <body>
+    <script>
+      var ar = []; //array 10x10 random +-5
+      for (i = 0; i < 10; i++) {
+        ar[i] = [];
+        for (j = 0; j < 10; j++) {
+            ar[i][j] = Math.round(Math.random() * 10 - 5);
+            if(ar[i][j]<0){
+                ar[i][j] = "<td class='bgRed'>"+ar[i][j]+"</td>";
+            }
+            else if(ar[i][j]>0){
+                ar[i][j] = "<td class='bgBlue'>"+ar[i][j]+"</td>";
+            }
+            else{
+                ar[i][j] = "<td>"+ar[i][j]+"</td>";
+            }
+
+        //   ar[i][j] = "<td>"+Math.round(Math.random() * 10 - 5)+"</td>";
+        }
+      }
+      ar2=ar;
+      for (i = 0; i < 10; i++) {
+        ar2[i] = ar2[i].join("");
+      }
+      document.write("<table><tr>");
+
+      document.write(ar2.join("</tr><tr>"));
+    </script>
+  </body>
+</html>

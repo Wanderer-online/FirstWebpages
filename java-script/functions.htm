@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+        function calculate(op, v1, v2) {
+        console.log(arguments);
+        if (arguments.length != 3) {
+          console.log("!");
+          return "Error, some parameters are wrong";
+        }
+        switch (op) {
+          case "+":
+            console.log(v1 + v2);
+            return v1 + v2;
+          case "-":
+            console.log(v1 - v2);
+            return v1 - v2;
+
+          case "*":
+            console.log(v1 * v2);
+            return v1 * v2;
+          case "/":
+            if (v1 == 0 || v2 == 0) {
+              return "Error! Null division";
+            }
+            console.log(v1 / v2);
+            return v1 / v2;
+        }
+      }
+      
+      var a, b, operation, out;
+
+      operation = prompt("chose operation: +,-,*,/");
+      a = parseInt(prompt("enter first digit"));
+      b = parseInt(prompt("enter second digit"));
+      console.log(operation, a, b);
+
+      out = calculate(operation, a, b);
+      document.write(out);
+
+
+    </script>
+  </head>
+  <body></body>
+</html>
