@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      "use strict";
+      const str = "some Text typed";
+      console.log(str[4]); //str[4] = "k" не сработает!, это значение доступно только для чтения
+
+      console.log(str.toLowerCase());
+
+      console.log(str.indexOf("Ext")); //поиск подстроки. Чувствителен к регистру! Если не найдено совпадений возвращает -1
+
+      console.log(str.slice(5, 8));
+      console.log(str.slice(str.indexOf("Text"), str.indexOf("Text") + 4));
+
+      console.log(str.substring(5, 8));
+
+      console.log(str.substr(8, 5)); // 2-е число это количество символов, которые нужно вырезать
+
+      const num = 12.2;
+      console.log(Math.round(num));
+
+    const size = "12.2px";
+    console.log(parseInt(size));
+    console.log(parseFloat(size));
+    
+    </script>
+  </head>
+  <body></body>
+</html>
