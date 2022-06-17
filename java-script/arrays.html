@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      const arr = [1, 2, 3, 4, 5];
+
+      arr.pop(); //вытаскивает последний элемент из массива и возвращает его значение
+      arr.push(00); //добавляет элемент в конец
+
+      // shift и unshift редко используются ибо требуют много операций на изменение индекса всем последующим элементам после первого
+
+      for (let i = 0; i < arr.length; i++) {
+        console.log(arr[i]);
+      }
+      for (value of arr) {
+        console.log(value);
+      }
+
+      //   ***********************************
+    //   в forEach break и continue не работают, в отличие от for (.. of ..){}
+      arr.forEach(function (nameOfElement, i, arr) {
+        console.log(`${i} element= ${nameOfElement} inside array ${arr}`);
+      });
+      //   ***********************************
+
+
+const str = prompt('мы должны заранее знать разделитель используемый в строке',"");
+const products = str.split(", ");
+products.sort();// сортирует элементы всегда как строки, т.е. с числами работает не оч
+console.log(products.join("_ "));
+
+
+function compareNumbers(a,b){
+    return a-b;
+}
+products.sort(compareNumbers);
+
+    </script>
+  </head>
+  <body></body>
+</html>
