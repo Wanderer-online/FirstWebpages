@@ -13,21 +13,18 @@
           console.log("hello");
         },
       };
-    //   const john = {
-    //     health: 150,
-    //   };
-const john = Object.create(soldier);//создать объект на основе прототипа soldier
-
-      // устаревший метод
+      //   const john = {
+      //     health: 150,
+      //   };
+   // устаревший метод
       //   john.__proto__ = soldier;
 
-      Object.setPrototypeOf(john, soldier);
+      const john = Object.create(soldier); //создать объект на основе прототипа soldier
+
+      //добавление прототипа объекту:
+      // Object.setPrototypeOf(john, soldier);//это если объект уже существовал, и ему просто нужно назначить прототип
       john.sayHello();
       console.log(john.health, john.armor);
-
-
-
-
 
       //
     </script>
