@@ -30,7 +30,7 @@ hearts.forEach((item) => {
 });
 
 
-
+//************************Действия с элементами на странице
 
 // dir(box);
 box.style.backgroundColor = "blue";//задаем инлайн стили (которые написаны на самом элементе а не в css)
@@ -47,6 +47,8 @@ box.style.cssText = "background-color: blue; width: 500px;"; //здесь пиш
 hearts.forEach(heart => {heart.style.backgroundColor = "blue";});
 
 
+
+//**************создание элемента посредством java-script
 const divCuston = document.createElement("div");//создает только внутри жс, на странице его еще нет
 // const txt = document.createTextNode("текст");//элементы html в жс называются "ноды"
 
@@ -64,7 +66,7 @@ hearts[0].after("div");//вставить после
 
 circles[0].remove();//удаление элемента
 
-// замена одного элементад ругим
+//******************* замена одного элемента другим
 hearts[1].replaceWith(circles[0]);
 
 
