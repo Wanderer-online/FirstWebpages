@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="overlay">
+      <button></button>
+      <button></button>
+      <button></button>
+    </div>
+    <a href="google.com">google</a>
+    <script>
+      const btn = document.querySelector("button"),
+        overlay = document.querySelector(".overlay");
+
+      // так не делают!
+      // btn.onclick = function(){
+      //     console.log("click");
+      // }
+      // const btn = document.querySelector('button');
+      // btn.onclick = function(){
+      //     console.log("second click");
+      // }
+      //выведется только "second click"! повторное назначение действия таким образом заменяет первое
+      //удалить такое событие нельзя
+
+      //*****************************************
+      btn.addEventListener("click", () => {
+        console.log("click");
+      });
+      btn.addEventListener("click", () => {
+        console.log("second click");
+      });
+      // выведется "click", а потом "second click" - в порядке очереди
+      btn.addEventListener("mouseenter", (event) => {
+        console.log(event.target);
+        // console.log("mouseenter");
+      });
+
+      //   let i = 0;
+      const delElement = (event) => {
+        // event.targe.remove();
+        console.log(event.target);
+        console.log(event.currentTarget);
+        console.log(event.type);
+        // i++;
+        // if (i == 1) {
+        //   btn.removeEventListener("click", delElement);
+        // }
+      };
+
+      btn.addEventListener("click", delElement); // без ()
+      overlay.addEventListener("click", delElement); //всплытие событий. сначала сработает нажатие на кнопку btn, а потом на контейнер, в котором она расположена и на который тоже навешен обработчик клика
+
+
+
+      //**************отмаена стандартного поведения браузера
+      const link = document.querySelector("a");
+      link.addEventListener("click", function (event) {
+        event.preventDefault(); //помещается в самое начало кода обработчика событий!
+        console.log(event.target);
+      });
+
+
+//*****************навешивание одного бработчика нескольким элементам
+
+const buttons = document.querySelectorAll("button");
+buttons.forEach((button) =>{
+    button.addEventListener("click", delElement, {once:true});//третий аргумент - опции обработчика. Эта означает что он сработает 1 раз
+});
+
+
+    </script>
+  </body>
+</html>
