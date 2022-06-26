@@ -14,68 +14,87 @@
 
 "use strict";
 
-const movieDB = {
-  movies: [
-    "Логан",
-    "Лига справедливости",
-    "Ла-ла лэнд",
-    "Одержимость",
-    "Скотт Пилигрим против...",
-  ],
-};
+//ожидание загрузки DOM структуры. (вместо document может быть window)
+document.addEventListener("DOMContentLoaded", () => {
+  const movieDB = {
+    movies: [
+      "Логан",
+      "Лига справедливости",
+      "Ла-ла лэнд",
+      "Одержимость",
+      "Скотт Пилигрим против...",
+    ],
+  };
 
-document.querySelector(".promo__adv").remove();
-document.querySelector(".promo__genre").innerHTML = "Драма";
+  //удаление рекламы обернутое в функцию
+  const deleteAdv = (add) => {
+    add.remove();
+  };
+  deleteAdv(document.querySelector(".promo__adv"));
 
-document.querySelector(".promo__bg").style.background =
-  "url('img/bg.jpg') center center/cover no-repeat";
+  const makeChanges = () => {
+    document.querySelector(".promo__genre").innerHTML = "Драма";
 
-for (let i = 0; i < movieDB.movies.length; i++) {
-  movieDB.movies[i] = movieDB.movies[i].toLowerCase();
-}
+    document.querySelector(".promo__bg").style.background =
+      "url('img/bg.jpg') center center/cover no-repeat";
+  };
+  makeChanges();
 
-// movieDB.movies.forEach(movie =>{movie = movie.toLowerCase();});
-// console.log(movieDB.movies);
+  const sortArray = (arr) => {
+    arr.sort();
+  };
 
-movieDB.movies.sort();
-// console.log(movieDB.movies);
+  for (let i = 0; i < movieDB.movies.length; i++) {
+    movieDB.movies[i] = movieDB.movies[i].toLowerCase();
+  }
 
-let filmsListItems = document.getElementsByClassName("promo__interactive-item");
+  // movieDB.movies.forEach(movie =>{movie = movie.toLowerCase();});
+  // console.log(movieDB.movies);
 
-for (let i = 0; i < movieDB.movies.length; i++) {
-  // console.log(filmsListItems[i]);
-  filmsListItems[i].innerHTML =
-    `${i + 1} ${movieDB.movies[i]}` + "<div class='delete'></div>";
-}
-// document.querySelector(".promo__interactive-list").replaceWith("");
+  //*******было переделано в функцию createMovieList
+  // movieDB.movies.sort();
+  // // console.log(movieDB.movies);
 
-//*******правильное решение:
-// const adv = document.querySelectorAll(".promo__adv img"), //возвращает коллекцию!
-//   poster = document.querySelector(".promo__bg"),
-//   genre = poster.querySelector(".promo__genre"),
-//   movielist = document.querySelector(".promo__interactive-list");
+  // let filmsListItems = document.getElementsByClassName(
+  //   "promo__interactive-item"
+  // );
 
-// adv.forEach((item) => {
-//   item.remove();
-// });
+  // for (let i = 0; i < movieDB.movies.length; i++) {
+  //   // console.log(filmsListItems[i]);
+  //   filmsListItems[i].innerHTML =
+  //     `${i + 1} ${movieDB.movies[i]}` + "<div class='delete'></div>";
+  // }
+  const filmsList = document.querySelector(".promo__interactive-list");
 
-// genre.textContent = "драма";
+  // document.querySelector(".promo__interactive-list").replaceWith("");
 
-// poster.style.backgroundImage = "url('img/bg.jpg')"; //путь относительно html
+  //*******правильное решение:
+  // const adv = document.querySelectorAll(".promo__adv img"), //возвращает коллекцию!
+  //   poster = document.querySelector(".promo__bg"),
+  //   genre = poster.querySelector(".promo__genre"),
+  //   movielist = document.querySelector(".promo__interactive-list");
 
-// movielist.innerHTML = "";
+  // adv.forEach((item) => {
+  //   item.remove();
+  // });
 
-// movieDB.movies.sort();
+  // genre.textContent = "драма";
 
-// movieDB.movies.forEach((film, i) => {
-//   movielist.innerHTML += `
-//     <li class="promo__interactive-item">${i+1} ${film}
-//         <div class="delete"></div>
-//     </li>
-//     `;
-// });
+  // poster.style.backgroundImage = "url('img/bg.jpg')"; //путь относительно html
 
-/* Задания на урок:
+  // movielist.innerHTML = "";
+
+  // movieDB.movies.sort();
+
+  // movieDB.movies.forEach((film, i) => {
+  //   movielist.innerHTML += `
+  //     <li class="promo__interactive-item">${i+1} ${film}
+  //         <div class="delete"></div>
+  //     </li>
+  //     `;
+  // });
+
+  /* Задания на урок:
 
 1) Реализовать функционал, что после заполнения формы и нажатия кнопки "Подтвердить" -
 новый фильм добавляется в список. Страница не должна перезагружаться.
@@ -92,64 +111,104 @@ P.S. Здесь есть несколько вариантов решения з
 
 5) Фильмы должны быть отсортированы по алфавиту */
 
-// Возьмите свой код из предыдущей практики
+  // Возьмите свой код из предыдущей практики
 
-const inp = document.querySelector(".adding__input");
-const formContainer = document.querySelector(".add");
-const btn = formContainer.lastElementChild;
-let chkBox = "";
-for (let elem of formContainer.childNodes) {
-  if (elem.type == "checkbox") {
-    chkBox = elem;
-    break;
-  }
-  // console.log(elem.type);
-}
-const delBtn = document.querySelectorAll(".delete");
+  const inp = document.querySelector(".adding__input");
+  const formContainer = document.querySelector("form.add"); //вместо просто .add чтобы точнее попасть на нужную форму если их много
+  const btn = formContainer.lastElementChild;
 
-// const chkBox = document.querySelector("checkbox");
-console.log(chkBox);
+  const chkBox = formContainer.querySelector('[type="checkbox"]'); //поиск чекбокса по атрибуту
 
-//добавление в базу новых фильмов + обрезка до 21 символа
-btn.addEventListener("click", function (event) {
-  event.preventDefault();
-  let userFilm = inp.value;
-  // console.log(inp.value);
-  if (userFilm.length > 21) {
-    userFilm = userFilm.slice(0, 21) + "...";
-  }
+  //мое решение по поиску чекбокса
+  // let chkBox = "";
+  // for (let elem of formContainer.childNodes) {
+  //   if (elem.type == "checkbox") {
+  //     chkBox = elem;
+  //     break;
+  //   }
+  //   // console.log(elem.type);
+  // }
+  // const delBtn = document.querySelectorAll(".delete");//эти кнопки добавляются и удаляются динамически. т.е. константы не катят
 
-  if (chkBox.checked == true) {
-    console.log("favorite");
-  }
+  // const chkBox = document.querySelector("checkbox");
+  console.log(chkBox);
 
-  movieDB.movies.push(userFilm);
-  movieDB.movies.sort();
-  console.log(movieDB.movies);
-});
+  //добавление в базу новых фильмов + обрезка до 21 символа
 
+  //мое решение по добавлению события для кнопки
+  // btn.addEventListener("click", function (event) {
+  formContainer.addEventListener("submit", (event) => {
+    event.preventDefault();
+    let userFilm = inp.value.toLowerCase();
+    if (userFilm != "") {
+      //здесь можно использовать динамическую типизацию - пустая строка = false
+      // console.log(inp.value);
+      if (userFilm.length > 21) {
+        userFilm = userFilm.slice(0, 21) + "...";
+        // userFilm = `${userFilm.substring(0, 22)} ...`;
+      }
 
-//удаление фильмов по нажатию на корзину (появляется при наведении на название)
-console.log(delBtn);
-delBtn.forEach((elem) => {
-  elem.addEventListener("click", function (event) {
-    // console.log(elem.parentElement);
-    elem.parentElement.remove();
-  });
-});
+      if (chkBox.checked == true) {
+        console.log("favorite");
+      }
 
-// let res = serchInDB(inp.value);
-//   if (res!= false){
-//     res.remove();
-//   }
-function serchInDB(str) {
-  movieDB.movies.forEach((elem) => {
-    if (elem == str) {
-      console.log(elem);
-      return elem;
-    } else {
-      console.log("not found");
-      return false;
+      movieDB.movies.push(userFilm);
+      console.log(movieDB.movies);
+      createMovieList(movieDB.movies, filmsList);
+      //очистка поля ввода в форме
+      //а так не работает:inp.reset();
+      event.target.reset();
     }
   });
-}
+
+  function createMovieList(films, parent) {
+    // movieDB.movies.sort();
+    sortArray(films);
+    // console.log(movieDB.movies);
+    console.log(parent);
+    parent.innerHTML = "";
+
+    films.forEach((film, i) => {
+      parent.innerHTML += `<li class="promo__interactive-item"> ${i + 1} ${film}
+      <div class="delete"></div>
+      </li>`;
+      });
+    //удаление элементов из html и объекта базы по нажатию на корзинку
+
+    let delBtn = document.querySelectorAll(".delete");//их каждый раз надо искать заново, потому что весь список меняется
+    delBtn.forEach((elem, i) => {
+      console.log(elem.parentElement);
+      elem.addEventListener("click", function () {
+        elem.parentElement.remove();
+        films.splice(i, 1); //вырезает определенный элемент из массива splice(номер элемента, сколько удалить)
+        createMovieList(films, parent); //рекурсивный вызов нужен для того чтобы нумерация изменялась при удалении элементов
+      });
+    });
+  }
+  createMovieList(movieDB.movies, filmsList);
+
+  //удаление фильмов по нажатию на корзину (появляется при наведении на название)
+  // console.log(delBtn);
+  // delBtn.forEach((elem) => {
+  //   elem.addEventListener("click", function (event) {
+  //     // console.log(elem.parentElement);
+  //     elem.parentElement.remove();
+  //   });
+  // });
+
+  // let res = serchInDB(inp.value);
+  //   if (res!= false){
+  //     res.remove();
+  //   }
+  function serchInDB(str) {
+    movieDB.movies.forEach((elem) => {
+      if (elem == str) {
+        console.log(elem);
+        return elem;
+      } else {
+        console.log("not found");
+        return false;
+      }
+    });
+  }
+});
