@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="btn-block" id="first">
+      <button class = "one two">&nbsp;</button>
+      <button>&nbsp;</button>
+      <button>&nbsp;</button>
+      <button>&nbsp;</button>
+      <button>&nbsp;</button>
+      <button>&nbsp;</button>
+
+    </div>
+    <script>
+const btns = document.querySelectorAll("button"),
+wrapper = document.querySelector(".btn-block");
+// console.log(btns[0].classList.length);//Выдаст 2
+// console.log(btns[0].classList.item(0));//Выдаст one
+// console.log(btns[0].classList.item(1));//Выдаст two
+// console.log(btns[1].classList.add("three", "four"));//можно добавлять несколько через ,
+// console.log(btns[0].classList.remove("one"));
+// console.log(btns[0].classList.toggle("one"));//*************полезный в работе. Если класс есть - убрать, если нет - добавить
+
+// if (btns[1].classList.contains("three")){
+//     console.log("three");
+// }
+
+btns[0].addEventListener("click", ()=>{
+    // if(!btns[1].classList.contains("two")){
+    //     btns[1].classList.add("two");
+    // }
+    // else{
+    //     btns[1].classList.remove("two");
+    // }
+    btns[1].classList.toggle("two");
+});
+
+
+//*********************делегирование событий
+//назначаем на контейнер кнопок событие, при этом проверяем что оно сработало внутри кнопки
+wrapper.addEventListener("click", (event)=>{
+    console.dir(event.target);
+    if(event.target && event.target.matches("button.two")){//тег button с классом two
+    // if(event.target && event.target.name == "BUTTON"){//некоторые теги невозможно кликнуть и у них не будет event.target
+        console.log("click");
+    }
+});
+
+//динамически добавляем кнопку
+const btn = document.createElement("button");
+btn.classList.add("two");
+wrapper.append(btn);
+
+
+
+//устаревшее
+// console.log(btns[0].className);//выводит список классов элемента в виде строки
+
+
+    </script>
+  </body>
+</html>
