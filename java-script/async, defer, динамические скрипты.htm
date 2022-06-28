@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- в head скрипты лучше не пихать - гугл и прочие боты ругаются на такое -->
+  </head>
+  <body>
+    <!-- скрипты с defer никогда не блокируют страницу, они загружаются в фоновом режиме, они выполняются только тогда, когда DOM дерево уже готово, срабатывают до события DOMContentLoaded -->
+    <!-- <script defer>//без defer не будет работать
+      "use strict";
+      const p = document.querySelectorAll("p");
+      console.log(p);
+    </script>
+    <script defer>//такие скрипты загружаются последовательно друг за другом
+        "use strict";
+        console.log("text text");
+      </script> -->
+    <script async>
+      //страница не ждет асинхронных скриптов, DOMContentLoaded не ждет эти скрипты, как и другие скрипты и страница в целом. Используется для метрик, счетчиков регистрирующих вход на страницу, которые абсолютно не зависят от DOM структуры
+      "use strict";
+      const p = document.querySelectorAll("p");
+      console.log(p);
+    </script>
+    <script async>
+      //такие скрипты выполняются в порядке загрузки - кто быстрее тот и первый
+      "use strict";
+      console.log("text text");
+
+      //подключение других скриптов при помощи js (по умолчанию такие скрипты ведут себя как async)
+
+      function loadScript(src) {
+        const script = document.createElement("script");
+        script.src = src;
+        script.async = false;
+        document.body.append(script);
+      }
+
+      loadScript("elements/js/script.js");
+      loadScript("movieDB_homework/js/script.js");
+
+    </script>
+    <p>text</p>
+    <p>another text</p>
+  </body>
+</html>
