@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      "use strict";
+      const now = new Date(); //выведет текущую дату и время
+      // const now = new Date("2022-06-28");
+      // const now = new Date(2022,6,28,20);//05 должно быть введено как 5
+      //месяцы считаются с 0 а не 1, поэтому 6 = 7 месяц года
+      //время учитывает часовые пояса, при gmt+3 и введенном 20 будет выведено 17:00 часов
+
+      // const now = new Date(0);//0 милисекунд от начала отсчета - 1970-01-01
+      //для получения даты до начала отсчета вводятся отрицательное число милисекунд
+      // console.log(now);
+      console.log(now.getFullYear()); //выдаст текущий год в формате хххх
+      console.log(now.getMonth()); //выдаст текущий месяц начиная с 0
+      console.log(now.getDate()); //выдаст текущий день начиная с 1 до 31
+      console.log(now.getDay()); //выдаст текущий день недели вс=0, сб = 6
+      //все команды выше выдают местный часовой пояс
+
+      console.log(now.getUTCHours()); //выдает время по Гринвичу
+
+      console.log(now.getTimezoneOffset()); //выдаст разницу между текущим часовым поясом и UTC в минутах -180 для 3 часов
+      console.log(now.getTime()); //выдаст количество милисекунд которые прошли с 1970-01-01
+
+      //установка значения даты
+      console.log(now.setHours(18, 40)); //18:40
+      console.log(now.setHours(40)); //произойдет переход на следующий день
+      console.log(now);
+
+      Date.parse("2022-06-28");//выдаст значение в формате даты которая в браузере
+
+      let start = new Date();
+      for (let i = 0; i < 10000; i++) {
+        let someVar = i ** 3; //возвести в степернь 3
+      }
+      let end = new Date();
+
+      alert(`прошло${end - start}ms`);
+    </script>
+  </body>
+</html>
