@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        box-sizing: border-box;
+        width: 300px;
+        height: 200px;
+        overflow: scroll;
+        margin: 150px auto;
+        padding: 10px;
+      }
+      button {
+        width: 100px;
+        height: 40px;
+        display: block;
+        margin: 0 auto;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="box">
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta
+      voluptates tempora ipsa iusto unde similique aut quidem deserunt? Nihil
+      veniam possimus impedit iusto quasi pariatur voluptates tempora sequi
+      excepturi quidem natus perferendis architecto saepe tempore consequuntur,
+      fugit doloribus velit quos nulla sit placeat dolorum. Ea odio perspiciatis
+      doloremque in quia doloribus illum vero eligendi assumenda sit maiores
+      architecto nisi id, a ipsa quibusdam amet odit delectus. Esse accusantium
+      deserunt, suscipit, odit adipisci fugiat beatae fugit odio obcaecati,
+      ratione praesentium dignissimos consequuntur nesciunt molestiae voluptate
+      tenetur quis quia numquam reiciendis repellat est! Rem sint assumenda
+      exercitationem ratione, voluptatum optio facilis rerum fuga sunt corrupti
+      quisquam, ipsam pariatur dolorum dignissimos nulla esse possimus.
+      Repellendus, omnis. Voluptates excepturi ipsam distinctio quaerat, sunt
+      ducimus magnam. Nisi, vel at ullam nemo rem eligendi repellat veritatis
+      impedit vero veniam dolor saepe quod libero vitae. Quae nulla neque
+      nostrum assumenda fuga deserunt eos voluptates consequatur quis tempore.
+    </section>
+    <button>expand visible part to 100%</button>
+    <script>
+      "use strict";
+      const box = document.querySelector(".box"),
+        btn = document.querySelector("button"),
+        width = box.clientWidth, //полосы прокрутки и padding не включаются
+        height = box.clientHeight,
+        WidthOffset = box.offsetWidth, //чистые размеры, если в css заданы в пикселях то совпадают
+        HeightOffset = box.offsetHeight,
+        WidthScroll = box.scrollWidth, //полосы прокрутки не включаются, высота - полная,  которая под скроллом
+        HeightScroll = box.scrollHeight;
+      console.log("w " + width + " h " + height);
+      console.log("w offset" + WidthOffset + " h offset" + HeightOffset);
+      console.log("w Scroll" + WidthScroll + " h Scroll" + HeightScroll);
+
+      btn.addEventListener("click", () => {
+        // box.style.height   =box.scrollHeight+"px";
+        console.log(box.scrollTop); //покажет сколько текста пролистано вниз (в пикселях)
+      });
+      console.log(box.getBoundingClientRect()); //DOMRect
+      // bottom: 350//сверху top150+ height200
+      // height: 200
+      // left: 728//справа
+      // right: 1028//слева
+      // top: 150//снизу
+      // width: 300
+      // x: 728
+      // y: 150
+      console.log(box.getBoundingClientRect().top);
+
+
+      //getComputedStyle стили которые уже были применены к элементу (только чтение)
+      const style = window.getComputedStyle(box);//(box, имя_псевдоэлемента) позволяет получить стили псевдоэлементов, но не изменять их
+    //   console.log(style);
+      console.log(style.display);
+
+      console.log(document.documentElement.clientWidth);//выдаст высоту области документа
+      document.documentElement.scrollTop = 0;//прокрутит страницу в начало
+      window.scrollBy(x,400)//прокрутит вниз на 400 рх от ТЕКУЩЕЙ позиции
+      window.scrollTo(x,400)//прокрутит вниз на 400 рх от начальной позиции
+
+    </script>
+  </body>
+</html>
