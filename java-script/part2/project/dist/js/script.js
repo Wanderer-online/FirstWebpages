@@ -95,7 +95,10 @@ window.document.addEventListener("DOMContentLoaded", () => {
 
   setClock(".timer", deadLine);
 
-  //modal window "связаться с нами"
+
+
+
+//############################################# modal window "связаться с нами"
   const modalTrigger = document.querySelectorAll("[data-modal]"),
     modalWindow = document.querySelector(".modal"),
     modalClose = document.querySelector("[data-close]");
@@ -104,11 +107,33 @@ window.document.addEventListener("DOMContentLoaded", () => {
     elem.addEventListener("click", () => {
       modalWindow.classList.add("show");
       modalWindow.classList.remove("hide");
+      //modalWindow.classList.toggle("show");
+      document.body.style.overflow = "hidden";
     });
   });
-  modalClose.addEventListener("click", () => {
+
+  function closeModal() {
     modalWindow.classList.remove("show");
     modalWindow.classList.add("hide");
+    //modalWindow.classList.toggle("show");
+    document.body.style.overflow = ""; //scroll выставится по умолчанию
+  }
+
+  modalClose.addEventListener("click", closeModal);
+
+  //закрываем модальное окно если клик вне пределов его содержимого
+  //modalWindow = это контейнер для modal__dialog. если клик внутри modalWindow и только по нему - закрыть, если где-то еще (по самому телу диалога) - ничего не делать
+  modalWindow.addEventListener("click", (e) => {
+    if (e.target === modalWindow) {
+      closeModal();
+    }
+  });
+
+  //коды можно нагуглить или посмотреть на сайте keycode.info
+  document.addEventListener("keydown", (event) => {
+    if (event.code === "Escape" && modalWindow.classList.contains("show")) {
+      closeModal();
+    }
   });
 
   // function showModal
