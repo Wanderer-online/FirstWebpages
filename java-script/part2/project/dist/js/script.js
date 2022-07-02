@@ -94,4 +94,22 @@ window.document.addEventListener("DOMContentLoaded", () => {
   }
 
   setClock(".timer", deadLine);
+
+  //modal window "связаться с нами"
+  const modalTrigger = document.querySelectorAll("[data-modal]"),
+    modalWindow = document.querySelector(".modal"),
+    modalClose = document.querySelector("[data-close]");
+
+  modalTrigger.forEach((elem) => {
+    elem.addEventListener("click", () => {
+      modalWindow.classList.add("show");
+      modalWindow.classList.remove("hide");
+    });
+  });
+  modalClose.addEventListener("click", () => {
+    modalWindow.classList.remove("show");
+    modalWindow.classList.add("hide");
+  });
+
+  // function showModal
 });
