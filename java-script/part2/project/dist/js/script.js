@@ -29,8 +29,8 @@ window.document.addEventListener("DOMContentLoaded", () => {
   //предполагается что в html порядок табов и порядок их переключалей совпадает
   tabsParent.addEventListener("click", (event) => {
     const target = event.target;
+    console.log(target);
     if (target && target.classList.contains("tabheader__item")) {
-      console.log(target);
       tabs.forEach((item, i) => {
         if (target == item) {
           console.log(item);
@@ -95,20 +95,22 @@ window.document.addEventListener("DOMContentLoaded", () => {
 
   setClock(".timer", deadLine);
 
-
-
-
-//############################################# modal window "связаться с нами"
+  //############################################# modal window "связаться с нами"
   const modalTrigger = document.querySelectorAll("[data-modal]"),
     modalWindow = document.querySelector(".modal"),
     modalClose = document.querySelector("[data-close]");
 
+  function openModal() {
+    modalWindow.classList.add("show");
+    modalWindow.classList.remove("hide");
+    //modalWindow.classList.toggle("show");
+    document.body.style.overflow = "hidden";
+    clearInterval(modalTimerID);
+  }
+
   modalTrigger.forEach((elem) => {
     elem.addEventListener("click", () => {
-      modalWindow.classList.add("show");
-      modalWindow.classList.remove("hide");
-      //modalWindow.classList.toggle("show");
-      document.body.style.overflow = "hidden";
+      openModal();
     });
   });
 
@@ -136,5 +138,19 @@ window.document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // function showModal
+
+  const modalTimerID = setTimeout(openModal, 30000);
+
+  function showModalByScroll() {
+    //прокрутка страницы вниз + видимая высота окна >= общая высота документа (пролистано до самого конца)
+    if (
+      window.pageYOffset + document.documentElement.clientHeight >=
+      document.documentElement.scrollHeight
+    ) {
+      openModal();
+      window.removeEventListener("scroll", showModalByScroll);//удалить обработчик можно и так - точно повторив то, что было назначено в его объявлении
+      clearInterval(modalTimerID);
+    }
+  }
+  window.addEventListener("scroll", showModalByScroll);
 });
