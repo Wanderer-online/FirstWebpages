@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button>&nbsp;</button>
+    <script>
+      "use strict";
+
+      function showThis(a, b) {
+        console.log(this);
+        function sum() {
+          return a + b;
+          console.log(this);
+        }
+        console.log(sum());
+      }
+      showThis(2, 2);
+
+      const obj = {
+        a: 20,
+        b: 15,
+        fnc: function () {
+          function some() {
+            console.log(this + "вложенная в метод функция"); //это просто функция. она теряет контекст вызова и this = undefined
+          }
+
+          some();
+          console.log(this + "метод объекта");
+        },
+      };
+
+      console.log(obj.fnc());
+
+      function User(name, id) {
+        this.name = name;
+        this.id = id;
+        this.human = true;
+        this.hello = function () {
+          console.log("hello " + this.name);
+        };
+      }
+      let Sam = new User("Sam", 22);
+
+      //*****************добавление контекста к готовым функциям
+      function sayName(surname) {
+        console.log(this);
+        console.log(this.name + surname);
+      }
+
+      const someUser = {
+        name: "Carl",
+      };
+
+      sayName.call(someUser, "Johns"); // внутрь call передается контекст вызова
+      sayName.apply(someUser, ["Johns"]); //разница в синтаксисе - здесь передается массив переменных которые передаются в функцию
+
+      //этот метод !_создает новую функцию_! связанную с определенным контекстом
+
+      function count(num) {
+        return this * num;
+      }
+      const double = count.bind(2); //this в этой копии функции всегда будет равно 2
+      console.log(double(23));
+
+      const btn = document.querySelector("button");
+
+      //   btn.addEventListener("click", function () {
+      //     console.log(this); //если функция прописана именно так, а не в стелочном виде, то this = элемент на котором сработало событие
+      //     this.style.backgroundColor = "red";
+      //   });
+
+      //   btn.addEventListener("click", () =>{
+      //     console.log(this); //this = undefined
+      //     this.style.backgroundColor = "red";//error!
+      //   });
+
+      //************* правильный вариант определения контекста для обработчика со стрелочной функцией
+      btn.addEventListener("click", (e) => {
+        console.log(e.target);
+        e.target.style.backgroundColor = "red";
+      });
+
+      //у стрелочных функций нет контекста вызова! она берет его у своего родителя
+
+      const obj2 = {
+        num: 5,
+        sayNumber: function () {
+          const say = () => {
+            console.log(this.num);
+          };
+          say();
+        },
+      };
+
+      obj2.sayNumber();
+
+      const star = (a) => a * 2; //а если аргумент один - то даже () можно опустить и писать star = a => a * 2;
+      console.log(star(4));
+
+      //1) обычная функция: this = window, с "use strict"; = undefined
+      //и вложенная тоже!
+      //2) контекст у методов объекта - сам объект
+      //3) this в конструкторах и классах - это новый экземпляр объекта!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      //4) ручная привязка this: call, apply, bind (часто встречается в react)
+    </script>
+  </body>
+</html>
