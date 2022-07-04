@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      "use strict";
+
+      class Rectangle {
+        constructor(height, width) {
+          this.height = height;
+          this.width = width;
+        }
+        //между свойствами и методами здесь не нужно ставить ; вообще!
+        calcArea() {
+          return this.height * this.width;
+        }
+      }
+
+      const square = new Rectangle(10, 8);
+      console.log(square.calcArea());
+      const longSquare = new Rectangle(50, 18);
+      console.log(longSquare.calcArea());
+
+      //наследование новым классом существующего
+      class coloredRectWithText extends Rectangle {
+        constructor(width, height, text, bgColor) {
+          super(height, width); //в скобках те свойства которые нужны (если они нужны не все)
+          //super() всегда на первом месте в конструкторе!
+          //это вызывает строки элементов родителя this.height = height; this.width = width;
+          this.text = text;
+          this.bgColor = bgColor;
+        }
+
+        showMyProperties() {
+          console.log(`text: ${this.text}, color: ${this.bgColor}`);
+        }
+      }
+
+      const div = new coloredRectWithText(25, 10, "text", "red");
+      div.showMyProperties();
+      console.log(div.calcArea());
+    </script>
+  </body>
+</html>

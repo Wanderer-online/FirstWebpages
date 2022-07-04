@@ -12,10 +12,10 @@
       "use strict";
 
       function showThis(a, b) {
-        console.log(this);
+        console.log(this + " просто функция");
         function sum() {
+          console.log(this + " вложенная в нее функция");
           return a + b;
-          console.log(this);
         }
         console.log(sum());
       }
@@ -26,11 +26,11 @@
         b: 15,
         fnc: function () {
           function some() {
-            console.log(this + "вложенная в метод функция"); //это просто функция. она теряет контекст вызова и this = undefined
+            console.log(this + " вложенная в метод функция"); //это просто функция. она теряет контекст вызова и this = undefined
           }
 
           some();
-          console.log(this + "метод объекта");
+          console.log(this + " метод объекта");
         },
       };
 
@@ -91,10 +91,10 @@
         num: 5,
         sayNumber: function () {
           const say = () => {
-            console.log(this.num);
+            console.log(this);
           };
           say();
-        },
+        }
       };
 
       obj2.sayNumber();
