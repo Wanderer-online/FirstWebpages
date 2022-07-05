@@ -138,8 +138,7 @@ window.document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  //                                                      ************ раскомментировать перед деплоем
-  // const modalTimerID = setTimeout(openModal, 30000);
+  const modalTimerID = setTimeout(openModal, 30000);
 
   function showModalByScroll() {
     //прокрутка страницы вниз + видимая высота окна >= общая высота документа (пролистано до самого конца)
@@ -154,73 +153,71 @@ window.document.addEventListener("DOMContentLoaded", () => {
   }
   window.addEventListener("scroll", showModalByScroll);
 
-  //############################################# классы для карточек меню menu__field
+  //############################################# Мой вариант решения для Шаблоны карточек меню menu__field
+  //чтобы посмотреть - надо расскомментировать в html исходные элементы ибо я делал на основе замены их содержимого, а не создания новых элементов
+  const cardsContainer = document.querySelector(".menu__field > .container");
+  const cards = cardsContainer.querySelectorAll(".menu__item");
+  // console.log(cards[0]);
 
   class MenuCard {
-    constructor(src, alt, title, descr, price, parentSelector) {
-      this.src = src;
-      this.alt = alt;
+    constructor(title, image, description, price) {
       this.title = title;
-      this.descr = descr;
+      this.image = image;
+      this.description = description;
       this.price = price;
-      this.parent = document.querySelector(parentSelector);
-      this.transfer = 27; //добавить динамическое получение курса валюты НБУ
-      this.changeToUAH(); //вызов метода класса прямо в нем самом
     }
-
-    changeToUAH() {
-      this.price = this.price * this.transfer;
-    }
-
-    render() {
-      const element = document.createElement("div");
-      element.innerHTML = `
-      <div class="menu__item">
-        <img src=${this.src} alt=${this.alt}>
-        <h3 class="menu__item-subtitle">${this.title}</h3>
-        <div class="menu__item-descr">${this.descr}</div>
-        <div class="menu__item-divider"></div>
-        <div class="menu__item-price">
-            <div class="menu__item-cost">Цена:</div>
-            <div class="menu__item-total"><span>${this.price}</span> грн/день</div>
-        </div>
-      </div>
-      `;
-      this.parent.append(element);
+    addToDocument(count) {
+      //0-2
+      let card = cards[count];
+      console.log(card);
+      card.querySelector(".menu__item-subtitle").textContent = this.title;
+      card.querySelector("img").src = this.image;
+      card.querySelector("img").alt = this.title;
+      card.querySelector(".menu__item-descr").textContent = this.description;
+      card.querySelector(".menu__item-total > span").textContent = this.price;
     }
   }
 
-  //объект может существовать и без переменной в которую его положили
-  //при таком создании объекта посредством класса, сразу же будет вызван метод render. После отработки метода объект исчезнет, и к нему не будет доступа через js... однако в этом случае он и не нужен
-  new MenuCard(
-    "img/tabs/vegy.jpg",
-    "vegy",
-    'Меню "Фитнес"',
-    'Меню "Фитнес - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
-    9,
-    ".menu .container"
-  ).render();
+  const cardContentDB = {
+    title: ["Меню \"Фитнес\"", "Меню \“Премиум\”", "Меню \"Постное\""],
+    image: ["img/tabs/vegy.jpg", "img/tabs/elite.jpg", "img/tabs/post.jpg"],
+    description: [
+      'Меню "Фитнес - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
+      'В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!',
+      'Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.'
+    ],
+    price: [229, 550, 430],
+  };
 
-  new MenuCard(
-    "img/tabs/elite.jpg",
-    "premium",
-    "Меню “Премиум”",
-    "В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!",
-    14,
-    ".menu .container"
-  ).render();
+  const cardFitness = new MenuCard(
+    cardContentDB.title[0],
+    cardContentDB.image[0],
+    cardContentDB.description[0],
+    cardContentDB.price[0]
+  );
+// console.log(cardFitness);
+  const cardPremium = new MenuCard(
+    cardContentDB.title[1],
+    cardContentDB.image[1],
+    cardContentDB.description[1],
+    cardContentDB.price[1]
+  );
+  // console.log(cardPremium);
+  const cardPost = new MenuCard(
+    cardContentDB.title[2],
+    cardContentDB.image[2],
+    cardContentDB.description[2],
+    cardContentDB.price[2]
+  );
+  // console.log(cardPost);
+  cardFitness.addToDocument(0);
+  cardPremium.addToDocument(1);
+  cardPost.addToDocument(2);
 
-  new MenuCard(
-    "img/tabs/post.jpg",
-    "post",
-    'Меню "Постное"',
-    "Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.",
-    21,
-    ".menu .container"
-  ).render();
 
-  // передавать аргументы лучше сразу в кавычках, а не оставлять их в куске верстки
 
-  // const card1 = new MenuCard();
-  // card1.render();
+  // cards.forEach((item, i)=>{
+  //   console.log(item);
+
+  // });
 });
