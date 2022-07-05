@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      "use strict";
+      //...Имя - это rest оператор. он всегда пишется последним в списке аргументов функции. название может быть любым
+      //собирает все, что в него попадает в массив и отдает этот массив.
+      //возвращает пустой массив даже если ничего не было передано!!!
+      //используется когда есть неизвестное количество аргументов после заведомо присутствующих
+      //rest параметр не поддерживает дефолтные значения
+
+      const logF = function (a, b, ...rest) {
+        console.log(a, b, rest);
+      };
+
+      logF("first", "second", "to rest", "same, to rest");
+      //first second ["to rest", "same, to rest"]
+
+      function calcOrDouble(number, basis = 2) {
+        // старый прием
+        // basis = basis || 2; //опреатор или вернет первую правду. т.е. если basis не undefined то вернется он, иначе вернется 2
+        console.log(number * basis);
+      }
+      //   calcOrDouble(3, 5);
+      calcOrDouble(3);
+    </script>
+  </body>
+</html>
