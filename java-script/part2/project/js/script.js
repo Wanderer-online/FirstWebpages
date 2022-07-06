@@ -232,4 +232,63 @@ window.document.addEventListener("DOMContentLoaded", () => {
 
   // const card1 = new MenuCard();
   // card1.render();
+
+  //############################################# Формы. Отправка данных на сервер
+
+  const forms = document.querySelectorAll("form");
+
+  const message = {
+    loading: "Загрузка",
+    success: "Спасибо! Скоро мы с вами свяжемся",
+    faulure: "Что-то пошло не так",
+  };
+
+  forms.forEach((elem) => {
+    postData(elem);
+  });
+
+  function postData(form) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const statusMessage = document.createElement("div");
+      statusMessage.classList.add("status");
+      statusMessage.textContent = message.loading;
+      form.append(statusMessage);
+
+      const request = new XMLHttpRequest();
+      request.open("POST", "server.php");
+
+      //в формах в html всегда должны быть уникальные name="уникальное_имя"! Иначе FormData не сможет найти input-ы и взять из них данные.
+      // request.setRequestHeader("Content-type", "multipart/form-data");//в связке XMLHttpRequest и form-data заголовок устанавливать не нужно! он ставится автоматически. Если его установить вручную - то данные просто не дойдут
+      request.setRequestHeader("Content-type", "application/json");
+      const formData = new FormData(form);
+      console.log(formData);
+      const someObject = {};//промежуточный объект
+      formData.forEach(function(value,key){
+        someObject[key] = value;
+      });
+      console.log(someObject);
+
+      const json = JSON.stringify(someObject);
+      console.log(json);
+
+
+      // request.send(formData);
+      request.send(json);
+
+      request.addEventListener("load", () => {
+        if (request.status === 200) {
+          console.log(request.response);
+          statusMessage.textContent = message.success;
+          form.reset();
+          setTimeout(()=>{
+            statusMessage.remove();
+          }, 2000);
+        } else {
+          statusMessage.textContent = message.faulure;
+        }
+      });
+    });
+  }
 });
