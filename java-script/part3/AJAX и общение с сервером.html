@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>RUB</h2>
+    <input type="text" id="rub" />
+    <h2>USD</h2>
+    <input type="text" id="usd" />
+    <script>
+      "use strict";
+      //все это работает только на сервере, причем POST только на полноценном сервере
+
+      const inputRub = document.querySelector("#rub");
+      const inputUsd = document.querySelector("#usd");
+
+      //input срабатывает когда произошли изменения без потери фокуса
+      //change срабатывает когда произошли изменения И после потери фокуса
+      inputRub.addEventListener("input", () => {
+        const request = new XMLHttpRequest();
+
+        // request.open(metod, url, async, login, password);
+        // url относительно html из которого запускается скрипт
+        request.open("GET", "files/current.json");
+        request.setRequestHeader(
+          "content-type",
+          "application/json; charset=utf-8"
+        );
+        request.send();
+
+        // status - 400  (https://ru.wikipedia.org/wiki/%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_%D0%BA%D0%BE%D0%B4%D0%BE%D0%B2_%D1%81%D0%BE%D1%81%D1%82%D0%BE%D1%8F%D0%BD%D0%B8%D1%8F_HTTP)
+        // status text - Bad request
+        // response
+        // readyState (https://developer.mozilla.org/ru/docs/Web/API/XMLHttpRequest)
+
+        //отслеживает статус готовности запроса в текущий момент
+        // request.addEventListener("readystatechange", () => {
+
+        request.addEventListener("load", () => {
+          if (request.status === 200) {
+            // console.log(request.response);
+            const data = JSON.parse(request.response);
+            inputUsd.value = (+inputRub.value/data.current.usd).toFixed(2);
+          }else{
+            inputUsd.value = "something go wrong";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
