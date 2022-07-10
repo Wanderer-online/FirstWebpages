@@ -271,7 +271,6 @@ window.document.addEventListener("DOMContentLoaded", () => {
       const json = JSON.stringify(someObject);
       console.log(json);
 
-
       //если внутри fetch промис попадает на ошибку с http (404) он не выдаст reject.
       fetch("seresver.php", {
         method: "POST",
@@ -317,4 +316,9 @@ window.document.addEventListener("DOMContentLoaded", () => {
       closeModal();
     }, 4000);
   }
+
+  fetch("http://localhost:3000/menu")
+    .then((data) => data.json())
+    .then((res) => console.log(res))
+    .catch((e) => console.log(e));
 });
