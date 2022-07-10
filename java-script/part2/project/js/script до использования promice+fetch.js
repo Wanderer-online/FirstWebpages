@@ -255,13 +255,17 @@ window.document.addEventListener("DOMContentLoaded", () => {
       margin: 10px auto;
       `;
       // form.append(statusMessage);
-      form.insertAdjacentHTML("afterend", statusMessage);
+      form.insertAdjastmentHTML("afterend", statusMessage);
+
+
+      const request = new XMLHttpRequest();
+      request.open("POST", "server.php");
 
       //в формах в html всегда должны быть уникальные name="уникальное_имя"! Иначе FormData не сможет найти input-ы и взять из них данные.
       // request.setRequestHeader("Content-type", "multipart/form-data");//в связке XMLHttpRequest и form-data заголовок устанавливать не нужно! он ставится автоматически. Если его установить вручную - то данные просто не дойдут
+      request.setRequestHeader("Content-type", "application/json");
       const formData = new FormData(form);
-      // console.log(formData);
-
+      console.log(formData);
       const someObject = {}; //промежуточный объект
       formData.forEach(function (value, key) {
         someObject[key] = value;
@@ -271,26 +275,19 @@ window.document.addEventListener("DOMContentLoaded", () => {
       const json = JSON.stringify(someObject);
       console.log(json);
 
+      // request.send(formData);
+      request.send(json);
 
-      //если внутри fetch промис попадает на ошибку с http (404) он не выдаст reject.
-      fetch("seresver.php", {
-        method: "POST",
-        headers: { "Content-type": "application/json" },
-        body: json,
-      })
-        .then((data) => data.text())
-        .then((data) => {
-          console.log(data);
+      request.addEventListener("load", () => {
+        if (request.status === 200) {
+          console.log(request.response);
           showThanksModal(message.success);
-          statusMessage.remove();
-        })
-        .catch((e) => {
-          console.log(e);
-          showThanksModal(message.faulure);
-        })
-        .finally(() => {
           form.reset();
-        });
+          statusMessage.remove();
+        } else {
+          showThanksModal(message.faulure);
+        }
+      });
     });
   }
 
