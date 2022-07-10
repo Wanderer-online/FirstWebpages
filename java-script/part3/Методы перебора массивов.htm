@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      "use strict";
+
+      //filter (создает новый массив из старого)
+
+      const names = ["Rob", "Shan", "Artur", "Victor"];
+
+      const shortNames = names.filter(function (elem) {
+        return elem.length < 5; //if (elem.length < 5){return elem}
+      });
+      console.log(shortNames);
+
+      //map (создает новый массив из старого изменяя данные)
+
+      const answers = ["IVan", "seMen", "LuCa", "vasiliy"];
+
+      const formatedAnswers = answers.map((item) => {
+        return item.toLowerCase();
+      });
+      console.log(formatedAnswers);
+
+      //every/some (возвращает bool для функции примененной к каждому элементу)
+
+      const ar = [5, "str", "swg"];
+      //some - хотя бы 1 элемент должен соответствовать условию!
+      console.log(
+        ar.some((elem) => {
+          return typeof elem === "number";
+        })
+      );
+      //every - ВСЕ элементы должны соответствовать условию!
+      console.log(
+        ar.every((elem) => {
+          return typeof elem === "number";
+        })
+      );
+
+      //reduce
+
+      const numArray = [4, 5, 7, 1, 9];
+
+      // 1000 + 4
+      // 4   5
+      // 9   7
+      // 16  1
+      // 17  9
+      // 26
+      const resultArray = numArray.reduce((sum, current) => {
+        //здесь могут быть любые действия с элементами
+        return sum + current;
+      }, 1000); //1000 - необязательный аргумент, начальное значение (0 или "" по умолчанию)
+      console.log(resultArray); //1026
+
+      const stringArray = ["some", "string", "random", "words"];
+      const resArray = stringArray.reduce((sum, current) => {
+        return sum + ", " + current;
+      });
+      console.log(resArray); //some, string, random, words
+
+      const someObdj = {
+        carl: "persone",
+        sam: "persone",
+        dog: "animal",
+        cat: "animal",
+      };
+
+      //   const someArray = Object.entries(someObdj);//["carl","persone"], ["sam", "persone"],["dog", "animal"],["cat", "animal"]
+      const someArray = Object.entries(someObdj)
+        .filter(
+          (item) => item[1] === "persone"
+          //["carl","persone"], ["sam", "persone"]
+        )
+        .map(
+          (item) => item[0]
+          //["carl","sam"]
+        );
+      console.log(someArray);
+    </script>
+  </body>
+</html>
