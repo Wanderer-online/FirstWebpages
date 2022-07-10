@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      "use strict";
+
+      console.log("data request...");
+
+      const req = new Promise(function (resolve, reject) {
+        setTimeout(() => {
+          console.log("data preparing...");
+          const product = {
+            name: "TV",
+            price: 2000,
+          };
+
+          resolve(product);
+        }, 2000);
+      });
+
+      req
+        .then((product) => {
+          console.log("data aquired...");
+
+          return new Promise((resolve, reject) => {
+            setTimeout(() => {
+              product.status = "order";
+              resolve(product);
+              // reject();//все последующие .then пропускаются и сразу перемещается в catch
+            }, 2000);
+          });
+        })
+        .then((data) => {
+          data.modify = true;
+          return data;
+        })
+        .then((someData) => {
+          console.log(someData);
+          // console.log(data);//вызовет срабатывание catch блока! - несуществующая в этой области видимости переменная
+        })
+        .catch(() => {
+          //catch ставится в конце но перед finaly
+          console.error("some error happened");
+        })
+        .finally(() => {
+          console.log("finally");
+        });
+
+      //all & race
+
+      //функция принимающая аргумент time. Возвращает промис, который выдаст resolve через время ${time}
+      const test = time => {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => resolve(), time);
+        });
+      };
+
+      test(1000).then(() => {
+        console.log("1s");
+      });
+      test(2000).then(() => {
+        console.log("2s");
+      });
+
+      //all ([]) - принимает массив с промисами. Служит для того, чтобы убедиться, что все промисы уже выполнились
+      Promise.all([test(1000), test(2000)]).then(() => {
+        console.log("all(appear after 2 sec)");
+      });
+
+      //race ([]) - принимает массив с промисами. Операция в нем сработает после ПЕРВОГО же завершившегося промиса
+      Promise.race([test(1000), test(2000)]).then(() => {
+        console.log("race(appear after 1 sec)");
+      });
+    </script>
+  </body>
+</html>
