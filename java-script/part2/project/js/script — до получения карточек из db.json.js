@@ -193,53 +193,55 @@ window.document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+
   const getResources = async (url) => {
     const result = await fetch(url);
-    if (!result.ok) {
+    if(!result.ok){
       throw new Error(`fetch failed ${url}, status ${result.status}`);
     }
 
     return await result.json();
   };
 
-  //с сервера приходит массив "menu" с объектами. forEach перебирает каждый элемент, внутри деструктуризация по частям, их передаем внутрь конструктора класса, который создает карточку
-  //({img, altimg, title, descr, price}) - деструктуризация, вместо object, чтобы потом не обращаться к элементам object.img...
-
-  getResources("http://localhost:3000/menu").then((data) => {
-    data.forEach(({ img, altimg, title, descr, price }) => {
-      new MenuCard(
-        img,
-        altimg,
-        title,
-        descr,
-        price,
-        ".menu .container"
-      ).render();
+  getResources("http://localhost:3000/menu").then(data=>{
+    //с сервера приходит массив "menu" с объектами. forEach перебирает каждый элемент, внутри деструктуризация по частям, их передаем внутрь конструктора класса, который создает карточку
+    //({img, altimg, title, descr, price}) - деструктуризация, вместо object, чтобы потом не обращаться к элементам object.img...
+    data.forEach(({img, altimg, title, descr, price}) => {
+      new MenuCard(img, altimg, title, descr, price).render();
     });
   });
 
-  //альтернативное решение без использования класса
-  // getResources("http://localhost:3000/menu").then((data) => createCard(data));
-
-  // function createCard(data) {
-  //   data.forEach(({ img, altimg, title, descr, price }) => {
-  //     const element = document.createElement("div");
-  //     element.classList.add("menu__item");
-  //     element.innerHTML = `<img src=${img} alt=${altimg}>
-  //     <h3 class="menu__item-subtitle">${title}</h3>
-  //     <div class="menu__item-descr">${descr}</div>
-  //     <div class="menu__item-divider"></div>
-  //     <div class="menu__item-price">
-  //         <div class="menu__item-cost">Цена:</div>
-  //         <div class="menu__item-total"><span>${price*27}</span> грн/день</div>
-  //     </div>`;
-
-  //     document.querySelector(".menu .container").append(element);
-  //   });
-  // }
-
   //объект может существовать и без переменной в которую его положили
   //при таком создании объекта посредством класса, сразу же будет вызван метод render. После отработки метода объект исчезнет, и к нему не будет доступа через js... однако в этом случае он и не нужен
+  new MenuCard(
+    "img/tabs/vegy.jpg",
+    "vegy",
+    'Меню "Фитнес"',
+    'Меню "Фитнес - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
+    9,
+    ".menu .container",
+    "menu__item"
+  ).render();
+
+  new MenuCard(
+    "img/tabs/elite.jpg",
+    "premium",
+    "Меню “Премиум”",
+    "В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!",
+    14,
+    ".menu .container",
+    "menu__item"
+  ).render();
+
+  new MenuCard(
+    "img/tabs/post.jpg",
+    "post",
+    'Меню "Постное"',
+    "Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.",
+    21,
+    ".menu .container",
+    "menu__item"
+  ).render();
 
   // передавать аргументы лучше сразу в кавычках, а не оставлять их в куске верстки
 
