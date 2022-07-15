@@ -165,85 +165,35 @@ window.document.addEventListener("DOMContentLoaded", () => {
     nextSlide = document.querySelector(".offer__slider-next"),
     currentSlide = document.querySelector("#current"),
     totalSlides = document.querySelector("#total"),
-    sliderImages = document.querySelectorAll(".offer__slide"),
-    slidesWrapper = document.querySelector(".offer__slider-wrapper"),
-    slidesField = document.querySelector(".offer__slider-inner");
-  let width = window.getComputedStyle(slidesWrapper).width;
-  //без округления херня получается
-  width = Math.floor(width.slice(0, width.length - 2)) + "px";
-
-  let current = 1;
-  let offset = 0;
+    sliderImages = document.querySelectorAll(".offer__slide");
+    let current=0;
 
   totalSlides.textContent = addZeroToNumbers(sliderImages.length);
-  currentSlide.textContent = addZeroToNumbers(current);
 
-  slidesField.style.width = 100 * sliderImages.length + "%";
-  slidesField.style.display = "flex";
-  slidesField.style.transition = "0.5s all";
-
-  slidesWrapper.style.overflow = "hidden";
-  sliderImages.forEach((slide) => {
-    slide.style.width = width;
+  prevSlide.addEventListener("click", function () {
+    // -
+    renderSliderImage(-1);
   });
   nextSlide.addEventListener("click", function () {
-    // + к offset добавляется ширина еще 1 слайда и вся линия слайдов будет смещаться на ширину 1 слайда ->
-    if (
-      offset ==
-      +width.slice(0, width.length - 2) * (sliderImages.length - 1)
-    ) {
-      //width = "500px"
-      offset = 0; //первый слайд
-      current = 1;
-    } else {
-      offset += +width.slice(0, width.length - 2); //добавляем ширину 1 слайда
-      current += 1;
-    }
-
-    slidesField.style.transform = `translateX(-${offset}px)`;
-
-    currentSlide.textContent = addZeroToNumbers(current);
-  });
-  prevSlide.addEventListener("click", function () {
-    // - от offset отнимается ширина еще 1 слайда и вся линия слайдов будет смещаться на ширину 1 слайда <-
-    if (offset == 0) {
-      //width = "500px"
-      offset = +width.slice(0, width.length - 2) * (sliderImages.length - 1); //последний слайд
-      current = sliderImages.length;
-    } else {
-      offset -= width.slice(0, width.length - 2); //отнимаем ширину 1 слайда
-      current -= 1;
-    }
-
-    slidesField.style.transform = `translateX(-${offset}px)`;
-
-    currentSlide.textContent = addZeroToNumbers(current);
+    // +
+    renderSliderImage(1);
   });
 
-  // prevSlide.addEventListener("click", function () {
-  //   // -
-  //   renderSliderImage(-1);
-  // });
-  // nextSlide.addEventListener("click", function () {
-  //   // +
-  //   renderSliderImage(1);
-  // });
+  function renderSliderImage(number) {
+    current+=number;
+    if (current >= sliderImages.length) {
+      current = 0;
+    }
+    if (current < 0) {
+      current = sliderImages.length-1;
+    }
 
-  // function renderSliderImage(number) {
-  //   current+=number;
-  //   if (current >= sliderImages.length) {
-  //     current = 0;
-  //   }
-  //   if (current < 0) {
-  //     current = sliderImages.length-1;
-  //   }
+    hideCollectionContent(sliderImages);
+    showCollectionContent(sliderImages, current);
+    currentSlide.textContent = addZeroToNumbers(current + 1);
+  }
 
-  //   hideCollectionContent(sliderImages);
-  //   showCollectionContent(sliderImages, current);
-  //   currentSlide.textContent = addZeroToNumbers(current + 1);
-  // }
-
-  // renderSliderImage(0);
+  renderSliderImage(0);
 
   //############################################# классы для карточек меню menu__field
 
