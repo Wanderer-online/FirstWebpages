@@ -205,18 +205,43 @@ window.document.addEventListener("DOMContentLoaded", () => {
   //с сервера приходит массив "menu" с объектами. forEach перебирает каждый элемент, внутри деструктуризация по частям, их передаем внутрь конструктора класса, который создает карточку
   //({img, altimg, title, descr, price}) - деструктуризация, вместо object, чтобы потом не обращаться к элементам object.img...
 
-  getResources("http://localhost:3000/menu").then((data) => {
-    data.forEach(({ img, altimg, title, descr, price }) => {
-      new MenuCard(
-        img,
-        altimg,
-        title,
-        descr,
-        price,
-        ".menu .container"
-      ).render();
-    });
-  });
+  // getResources("http://localhost:3000/menu").then((data) => {
+  //   data.forEach(({ img, altimg, title, descr, price }) => {
+  //     new MenuCard(
+  //       img,
+  //       altimg,
+  //       title,
+  //       descr,
+  //       price,
+  //       ".menu .container"
+  //     ).render();
+  //   });
+  // });
+
+
+axios.get("http://localhost:3000/menu")
+.then(function (response) {
+  response.data.forEach(({ img, altimg, title, descr, price }) => {
+      // handle success
+      // console.log(response);
+        new MenuCard(
+          img,
+          altimg,
+          title,
+          descr,
+          price,
+          ".menu .container"
+        ).render();
+      });
+})
+.catch(function (error) {
+  // handle error
+  console.log(error);
+})
+.then(function () {
+  // always executed
+});
+
 
   //альтернативное решение без использования класса
   // getResources("http://localhost:3000/menu").then((data) => createCard(data));
