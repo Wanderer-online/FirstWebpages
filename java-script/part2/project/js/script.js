@@ -168,15 +168,14 @@ window.document.addEventListener("DOMContentLoaded", () => {
     sliderImages = document.querySelectorAll(".offer__slide"),
     slidesWrapper = document.querySelector(".offer__slider-wrapper"),
     slidesField = document.querySelector(".offer__slider-inner");
-  let width = window.getComputedStyle(slidesWrapper).width;
+  let widthPx = window.getComputedStyle(slidesWrapper).width; //ширина 1 слайда
   //без округления херня получается
-  width = Math.floor(width.slice(0, width.length - 2)) + "px";
+  const widthNum = Math.floor(widthPx.slice(0, widthPx.length - 2));
+  widthPx = widthNum + "px";
 
   let current = 1;
-  let offset = 0;
 
   totalSlides.textContent = addZeroToNumbers(sliderImages.length);
-  currentSlide.textContent = addZeroToNumbers(current);
 
   slidesField.style.width = 100 * sliderImages.length + "%";
   slidesField.style.display = "flex";
@@ -184,41 +183,70 @@ window.document.addEventListener("DOMContentLoaded", () => {
 
   slidesWrapper.style.overflow = "hidden";
   sliderImages.forEach((slide) => {
-    slide.style.width = width;
+    slide.style.width = widthPx;
   });
   nextSlide.addEventListener("click", function () {
     // + к offset добавляется ширина еще 1 слайда и вся линия слайдов будет смещаться на ширину 1 слайда ->
-    if (
-      offset ==
-      +width.slice(0, width.length - 2) * (sliderImages.length - 1)
-    ) {
+    if (current == sliderImages.length) {
       //width = "500px"
-      offset = 0; //первый слайд
       current = 1;
     } else {
-      offset += +width.slice(0, width.length - 2); //добавляем ширину 1 слайда
       current += 1;
     }
 
-    slidesField.style.transform = `translateX(-${offset}px)`;
-
-    currentSlide.textContent = addZeroToNumbers(current);
+    SliderNavigation(current);
   });
   prevSlide.addEventListener("click", function () {
     // - от offset отнимается ширина еще 1 слайда и вся линия слайдов будет смещаться на ширину 1 слайда <-
-    if (offset == 0) {
+    if (current == 1) {
       //width = "500px"
-      offset = +width.slice(0, width.length - 2) * (sliderImages.length - 1); //последний слайд
       current = sliderImages.length;
     } else {
-      offset -= width.slice(0, width.length - 2); //отнимаем ширину 1 слайда
       current -= 1;
     }
-
-    slidesField.style.transform = `translateX(-${offset}px)`;
-
-    currentSlide.textContent = addZeroToNumbers(current);
+    SliderNavigation(current);
   });
+
+  function SliderNavigation(sliderNumber){
+    slidesField.style.transform = `translateX(-${sliderNumber*widthNum-widthNum}px)`;
+    currentSlide.textContent = addZeroToNumbers(sliderNumber);
+
+    //убираем у всех навигационных элементов  класс активности
+    allSliderIndicators.forEach(elem =>{elem.classList.remove("dot-active");});
+    //находим соответствующий навигационный элемент по data- аттрибуту и добавляем ему класс активности
+    document.querySelector(`[data-number="${sliderNumber}"]`).classList.add("dot-active");
+  }
+
+  //############################################# навигация для слайдов
+  const sliderContainer = document.querySelector(".offer__slider"),
+    sliderIndicators = document.createElement("div");
+
+  sliderContainer.style.position = "relative";
+  sliderIndicators.classList.add("carousel-indicators");
+  sliderContainer.append(sliderIndicators);
+  //.dataset.imageNumber = i;
+
+
+  for (let i = 1; i <= sliderImages.length; i++) {
+    sliderIndicators.innerHTML+= `
+    <div class="dot" data-number="${i}"></div>
+    `;
+  }
+  const allSliderIndicators = sliderIndicators.querySelectorAll(".dot");
+
+  sliderIndicators.addEventListener("click", (event) => {
+    const target = event.target;
+    // console.log(target);
+    if (target.classList.contains("dot")) {
+      SliderNavigation(target.dataset.number);//dataset - чтение data-* аттрибута    number из data-number
+    }
+  });
+
+
+  // console.log(allSliderIndicators);
+
+  SliderNavigation(1);
+
 
   // prevSlide.addEventListener("click", function () {
   //   // -
@@ -244,6 +272,8 @@ window.document.addEventListener("DOMContentLoaded", () => {
   // }
 
   // renderSliderImage(0);
+
+
 
   //############################################# классы для карточек меню menu__field
 
