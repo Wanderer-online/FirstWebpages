@@ -212,16 +212,14 @@ window.document.addEventListener("DOMContentLoaded", () => {
     currentSlide.textContent = addZeroToNumbers(sliderNumber);
 
     //убираем у всех навигационных элементов  класс активности
-    dots.forEach(elem =>{elem.classList.remove("dot-active");});
+    allSliderIndicators.forEach(elem =>{elem.classList.remove("dot-active");});
     //находим соответствующий навигационный элемент по data- аттрибуту и добавляем ему класс активности
     document.querySelector(`[data-number="${sliderNumber}"]`).classList.add("dot-active");
-    current = sliderNumber;
   }
 
   //############################################# навигация для слайдов
   const sliderContainer = document.querySelector(".offer__slider"),
-    sliderIndicators = document.createElement("ol"),
-    dots = [];
+    sliderIndicators = document.createElement("div");
 
   sliderContainer.style.position = "relative";
   sliderIndicators.classList.add("carousel-indicators");
@@ -230,24 +228,12 @@ window.document.addEventListener("DOMContentLoaded", () => {
 
 
   for (let i = 1; i <= sliderImages.length; i++) {
-    const dot = document.createElement("li");
-    dot.setAttribute("data-number", i);
-    dot.classList.add("dot");
-    sliderIndicators.append(dot);
-
-    dots.push(dot);
-    // sliderIndicators.innerHTML+= `
-    // <li class="dot" data-number="${i}"></li>
-    // `;
+    sliderIndicators.innerHTML+= `
+    <div class="dot" data-number="${i}"></div>
+    `;
   }
+  const allSliderIndicators = sliderIndicators.querySelectorAll(".dot");
 
-  dots.forEach(dot =>{
-    dot.addEventListener("click", (e)=>{
-      const slideTo = e.target.getAttribute("data-number");
-
-      SliderNavigation(parseInt(slideTo))
-    });
-  })
   sliderIndicators.addEventListener("click", (event) => {
     const target = event.target;
     // console.log(target);
