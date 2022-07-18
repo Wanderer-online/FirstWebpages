@@ -77,6 +77,10 @@ window.document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+function getNumbersOnly(str){
+  return str.replace(/\D/g,"");
+}
+
   function setClock(selector, endtime) {
     //".timer"
     const timer = document.querySelector(selector),
@@ -170,7 +174,9 @@ window.document.addEventListener("DOMContentLoaded", () => {
     slidesField = document.querySelector(".offer__slider-inner");
   let widthPx = window.getComputedStyle(slidesWrapper).width; //ширина 1 слайда
   //без округления херня получается
-  const widthNum = Math.floor(widthPx.slice(0, widthPx.length - 2));
+  // const widthNum = Math.floor(widthPx.slice(0, widthPx.length - 2));
+  // const widthNum = Math.floor(widthPx.replace(/\D/g,""));//заменяем не числа на ""
+  const widthNum = Math.floor(getNumbersOnly(widthPx));
   widthPx = widthNum + "px";
 
   let current = 1;

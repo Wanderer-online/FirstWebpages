@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      "use strict";
+
+      //классический синтаксис
+      // new RegExp("pattern", "flags");
+
+      //сокращенный синтаксис
+      // /pattern/f
+
+        // i - поиск вне зависимости от регистра
+        // g - найти несколько совпадений, а не только первое
+        // m - многострочный режим, для строк с переносами
+
+
+        // const answer = prompt("enter your name");
+        // const regular = /n/ig;//ищем n
+
+        // console.log(answer.search(regular));// вернет первую ПОЗИЦИЮ, по которой найдено совпадение. -1 если не найдено. флаг g игнорирует
+        // console.log(answer.match(regular));// возвращает массив со всеми найденными совпадениями ["n", "n", "N"...]
+
+
+
+const pass = "somePassword...123";
+const reg = /o/g;
+
+console.log(pass.replace(/./g, "*"));// /./ - берутся все символы в строке
+console.log(pass.replace(/\./g, "*"));// берется символ точки и заменяется на *
+
+console.log("12-34-56".replace(/-/g,":"));// 12:34:56
+
+console.log(/me/.test(pass));// вернет true если есть совпдаение
+
+console.log(pass.match(reg));
+
+
+// \d - ищем все цифры
+// \w - ищем все буквы
+// \s - ищем все пробелы
+
+
+const size = "200px";
+const regNum = /\d/g;
+console.log(size.match(regNum));//вернет ["2", "0", "0"]
+
+
+
+const str = "Ares is a god of war. A1r3s";
+console.log(str.match(/\w\d\w\d\w/i));
+
+// \D - ищем НЕ цифры
+// \W - ищем НЕ буквы
+
+console.log(str.match(/\D/i));
+
+
+
+
+
+
+    </script>
+  </body>
+</html>
