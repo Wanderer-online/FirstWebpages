@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      "use strict";
+      console.log(typeof 2);
+      function User(name, age) {
+        this.name = name;
+        let userAge = age; //такую переменную снаружи нельзя ни получить, ни изменить
+
+        this.say = function () {
+          console.log(`user name: ${this.name}, age: ${userAge}`);
+        };
+
+        this.getAge = function () {
+          return userAge;
+        };
+        this.setAge = function (num) {
+          if (typeof num === "number" && num > 0 && num < 130) {
+            userAge = num;
+          } else {
+            console.log("setAge received incorrect value");
+          }
+        };
+      }
+
+      const Fry = new User("Fry", 22);
+      console.log(Fry.name);
+      //   console.log(userAge);//undefined
+      //   userAge = 30;//error
+      console.log(Fry.getAge());
+      Fry.setAge(50);
+      Fry.setAge(500);
+      console.log(Fry.getAge());
+
+      Fry.say();
+
+      class User2 {
+        constructor(name, age) {
+          this.name = name;
+          this._userAge = age;
+        }
+
+        #surname = "Rodriges"; //это свойство приватное благодаря #
+        // без геттеров доступа к этой переменной снаружи не будет
+        get surname(){
+            return this.#surname;
+        }
+        set surname(str){
+            this.#surname = str;
+        }
+
+
+        
+        say = () => {
+          console.log(
+            `user name: ${this.name} ${this.#surname}, age: ${this._userAge}`
+          );
+        };
+
+        get age() {
+          return this._userAge;
+        }
+        set age(num) {
+          if (typeof num === "number" && num > 0 && num < 130) {
+            this._userAge = num;
+          } else {
+            console.log("setAge received incorrect value");
+          }
+        }
+      }
+
+      const Bender = new User2("Bender", 22);
+      console.log(Bender.name);
+      //   console.log(userAge);//undefined
+      //   userAge = 30;//error
+      console.log(Bender.age);
+      Bender.age = 50;
+      Bender.age = 500;
+      console.log(Bender.age);
+
+      console.log(Bender.surname); //без геттера выдаст undefined ибо свойство приватное, попытка обратиться по Bender.#surname выдаст ошибку. чтобы получить его - нужно написать геттер
+      Bender.say();
+    </script>
+  </body>
+</html>
