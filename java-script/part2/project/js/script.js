@@ -529,11 +529,52 @@ window.document.addEventListener("DOMContentLoaded", () => {
   //############################################# калькулятор каллорий
 
   const calcResult = document.querySelector(".calculating__result span"); //span внутри искомого элемента
-  let sex = "female",
-    height,
-    weight,
-    age,
+  let sex, height, weight, age, activity;
+
+  if (localStorage.getItem("sex")) {
+    sex = localStorage.getItem("sex");
+  } else {
+    sex = "female";
+    localStorage.setItem("sex", sex);
+  }
+  if (localStorage.getItem("activity")) {
+    activity = localStorage.getItem("activity");
+  } else {
     activity = 1.375;
+    localStorage.setItem("activity", activity);
+  }
+  if (localStorage.getItem("height")) {
+    height = localStorage.getItem("height");
+    document.querySelector("#height").value = height;
+  }
+  if (localStorage.getItem("weight")) {
+    weight = localStorage.getItem("weight");
+    document.querySelector("#weight").value = weight;
+  }
+  if (localStorage.getItem("age")) {
+    age = localStorage.getItem("age");
+    document.querySelector("#age").value = age;
+  }
+
+  function initCalcLocalSettings(selector, activeClass) {
+    const elements = document.querySelectorAll(selector);
+    elements.forEach((elem) => {
+      elem.classList.remove(activeClass);
+      if (elem.getAttribute("id") === localStorage.getItem("sex")) {
+        elem.classList.add(activeClass);
+      }
+      if (
+        elem.getAttribute("data-activity") === localStorage.getItem("activity")
+      ) {
+        elem.classList.add(activeClass);
+      }
+    });
+  }
+  initCalcLocalSettings("#gender div", "calculating__choose-item_active");
+  initCalcLocalSettings(
+    ".calculating__choose_big div",
+    "calculating__choose-item_active"
+  );
 
   function calcCalories() {
     if (!sex || !height || !weight || !age || !activity) {
@@ -554,8 +595,8 @@ window.document.addEventListener("DOMContentLoaded", () => {
   }
   calcCalories();
 
-  function getCalcStaticData(parentSelector, activeClass) {
-    const allElements = document.querySelectorAll(`${parentSelector} div`); //получить все div внутри родителя
+  function getCalcStaticData(Selector, activeClass) {
+    const allElements = document.querySelectorAll(`${Selector}`); //получить все div внутри родителя
 
     // document.querySelector(parentSelector).addEventListener("click", (e) => {
     // if (e.target.classList.contains("calculating__choose-item")) {//убедимся что кликаем именно по кнопке, а не родителю
@@ -565,8 +606,10 @@ window.document.addEventListener("DOMContentLoaded", () => {
         //есть 2 ряда кнопок - 1 с id, 2 с data-activity="число"
         if (e.target.getAttribute("data-activity")) {
           activity = +e.target.getAttribute("data-activity");
+          localStorage.setItem("activity", activity);
         } else {
           sex = e.target.getAttribute("id");
+          localStorage.setItem("sex", sex);
         }
 
         allElements.forEach((elem) => {
@@ -578,25 +621,34 @@ window.document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
-  ///"calculating__choose-item_active"
-  getCalcStaticData("#gender", "calculating__choose-item_active");
+
+  getCalcStaticData("#gender div", "calculating__choose-item_active");
   getCalcStaticData(
-    ".calculating__choose_big",
+    ".calculating__choose_big div",
     "calculating__choose-item_active"
   );
 
   function getCalcDynamicData(selector) {
     const input = document.querySelector(selector);
     input.addEventListener("input", () => {
+      if (input.value.match(/\D/g)) {
+        input.style.border = "1px solid red";
+      } else {
+        input.style.border = "none";
+      }
+
       switch (input.getAttribute("id")) {
         case "height":
           height = +input.value;
+          localStorage.setItem("height", height);
           break;
         case "weight":
           weight = +input.value;
+          localStorage.setItem("weight", weight);
           break;
         case "age":
           age = +input.value;
+          localStorage.setItem("age", age);
           break;
       }
       // console.log(height,weight,age);
