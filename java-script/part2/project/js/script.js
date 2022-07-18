@@ -77,9 +77,9 @@ window.document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-function getNumbersOnly(str){
-  return str.replace(/\D/g,"");
-}
+  function getNumbersOnly(str) {
+    return str.replace(/\D/g, "");
+  }
 
   function setClock(selector, endtime) {
     //".timer"
@@ -213,14 +213,20 @@ function getNumbersOnly(str){
     SliderNavigation(current);
   });
 
-  function SliderNavigation(sliderNumber){
-    slidesField.style.transform = `translateX(-${sliderNumber*widthNum-widthNum}px)`;
+  function SliderNavigation(sliderNumber) {
+    slidesField.style.transform = `translateX(-${
+      sliderNumber * widthNum - widthNum
+    }px)`;
     currentSlide.textContent = addZeroToNumbers(sliderNumber);
 
     //убираем у всех навигационных элементов  класс активности
-    dots.forEach(elem =>{elem.classList.remove("dot-active");});
+    dots.forEach((elem) => {
+      elem.classList.remove("dot-active");
+    });
     //находим соответствующий навигационный элемент по data- аттрибуту и добавляем ему класс активности
-    document.querySelector(`[data-number="${sliderNumber}"]`).classList.add("dot-active");
+    document
+      .querySelector(`[data-number="${sliderNumber}"]`)
+      .classList.add("dot-active");
     current = sliderNumber;
   }
 
@@ -234,7 +240,6 @@ function getNumbersOnly(str){
   sliderContainer.append(sliderIndicators);
   //.dataset.imageNumber = i;
 
-
   for (let i = 1; i <= sliderImages.length; i++) {
     const dot = document.createElement("li");
     dot.setAttribute("data-number", i);
@@ -247,26 +252,24 @@ function getNumbersOnly(str){
     // `;
   }
 
-  dots.forEach(dot =>{
-    dot.addEventListener("click", (e)=>{
+  dots.forEach((dot) => {
+    dot.addEventListener("click", (e) => {
       const slideTo = e.target.getAttribute("data-number");
 
-      SliderNavigation(parseInt(slideTo))
+      SliderNavigation(parseInt(slideTo));
     });
-  })
+  });
   sliderIndicators.addEventListener("click", (event) => {
     const target = event.target;
     // console.log(target);
     if (target.classList.contains("dot")) {
-      SliderNavigation(parseInt(target.dataset.number));//dataset - чтение data-* аттрибута    number из data-number
+      SliderNavigation(parseInt(target.dataset.number)); //dataset - чтение data-* аттрибута    number из data-number
     }
   });
-
 
   // console.log(allSliderIndicators);
 
   SliderNavigation(1);
-
 
   // prevSlide.addEventListener("click", function () {
   //   // -
@@ -292,8 +295,6 @@ function getNumbersOnly(str){
   // }
 
   // renderSliderImage(0);
-
-
 
   //############################################# классы для карточек меню menu__field
 
@@ -524,4 +525,86 @@ function getNumbersOnly(str){
     .then((data) => data.json())
     .then((res) => console.log(res))
     .catch((e) => console.log(e));
+
+  //############################################# калькулятор каллорий
+
+  const calcResult = document.querySelector(".calculating__result span"); //span внутри искомого элемента
+  let sex = "female",
+    height,
+    weight,
+    age,
+    activity = 1.375;
+
+  function calcCalories() {
+    if (!sex || !height || !weight || !age || !activity) {
+      calcResult.textContent = "0.0";
+      return;
+    }
+    if (sex === "female") {
+      calcResult.textContent = (
+        (447.6 + 9.2 * weight + 3.1 * height - 4.3 * age) *
+        activity
+      ).toFixed(2);
+    } else {
+      calcResult.textContent = (
+        (88.36 + 13.4 * weight + 4.8 * height - 5.7 * age) *
+        activity
+      ).toFixed(2);
+    }
+  }
+  calcCalories();
+
+  function getCalcStaticData(parentSelector, activeClass) {
+    const allElements = document.querySelectorAll(`${parentSelector} div`); //получить все div внутри родителя
+
+    // document.querySelector(parentSelector).addEventListener("click", (e) => {
+    // if (e.target.classList.contains("calculating__choose-item")) {//убедимся что кликаем именно по кнопке, а не родителю
+
+    allElements.forEach((elem) => {
+      elem.addEventListener("click", (e) => {
+        //есть 2 ряда кнопок - 1 с id, 2 с data-activity="число"
+        if (e.target.getAttribute("data-activity")) {
+          activity = +e.target.getAttribute("data-activity");
+        } else {
+          sex = e.target.getAttribute("id");
+        }
+
+        allElements.forEach((elem) => {
+          elem.classList.remove(activeClass);
+        });
+        e.target.classList.add(activeClass);
+
+        calcCalories();
+      });
+    });
+  }
+  ///"calculating__choose-item_active"
+  getCalcStaticData("#gender", "calculating__choose-item_active");
+  getCalcStaticData(
+    ".calculating__choose_big",
+    "calculating__choose-item_active"
+  );
+
+  function getCalcDynamicData(selector) {
+    const input = document.querySelector(selector);
+    input.addEventListener("input", () => {
+      switch (input.getAttribute("id")) {
+        case "height":
+          height = +input.value;
+          break;
+        case "weight":
+          weight = +input.value;
+          break;
+        case "age":
+          age = +input.value;
+          break;
+      }
+      // console.log(height,weight,age);
+      calcCalories();
+    });
+  }
+
+  getCalcDynamicData("#height");
+  getCalcDynamicData("#weight");
+  getCalcDynamicData("#age");
 });
