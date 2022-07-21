@@ -9,7 +9,7 @@
   <body>
     <script>
       "use strict";
-      console.log(typeof 2);
+      
       function User(name, age) {
         this.name = name;
         let userAge = age; //такую переменную снаружи нельзя ни получить, ни изменить
@@ -57,7 +57,7 @@
         }
 
 
-        
+
         say = () => {
           console.log(
             `user name: ${this.name} ${this.#surname}, age: ${this._userAge}`
