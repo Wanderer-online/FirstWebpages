@@ -1,8 +1,10 @@
-function forms(){
+import {showThanksModal} from "./show-modal";
+import {postData} from "../services/post-data";
+function forms(formSelector,modalTimerID){
 
 //############################################# Формы. Отправка данных на сервер
 
-const forms = document.querySelectorAll("form");
+const forms = document.querySelectorAll(formSelector);
 
 const message = {
   loading: "img/forms/054 spinner.svg",
@@ -14,17 +16,7 @@ forms.forEach((elem) => {
   bindPostData(elem);
 });
 
-//это асинхронный участок кода, значит нужно async (ставится перед функцией в месте ее объявления) await (ставится перед каждой операцией, которую нужно дождаться)
-const postData = async (url, data) => {
-  const result = await fetch(url, {
-    method: "POST",
-    headers: { "Content-type": "application/json" },
-    body: data,
-  });
 
-  // console.log(result);
-  return await result.json();
-};
 
 function bindPostData(form) {
   form.addEventListener("submit", (e) => {
@@ -66,13 +58,13 @@ function bindPostData(form) {
     postData("http://localhost:3000/requests", json)
       .then((data) => {
         console.log(data);
-        showThanksModal(message.success);
+        showThanksModal(message.success,modalTimerID);
         statusMessage.remove();
         console.log("statusMessage= " + statusMessage);
       })
       .catch((e) => {
         console.log(e);
-        showThanksModal(message.faulure + e);
+        showThanksModal(message.faulure + e,modalTimerID);
       })
       .finally(() => {
         form.reset();
@@ -80,4 +72,4 @@ function bindPostData(form) {
   });
 }
 }
-module.exports = forms;
+export default forms;

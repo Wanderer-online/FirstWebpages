@@ -1,12 +1,17 @@
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./js/modules/calc.js":
 /*!****************************!*\
   !*** ./js/modules/calc.js ***!
   \****************************/
-/***/ ((module) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
 function calc(){
 //############################################# калькулятор каллорий
 
@@ -142,7 +147,7 @@ getCalcDynamicData("#height");
 getCalcDynamicData("#weight");
 getCalcDynamicData("#age");
 }
-module.exports = calc;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (calc);
 
 
 /***/ }),
@@ -151,8 +156,12 @@ module.exports = calc;
 /*!************************************!*\
   !*** ./js/modules/card-classes.js ***!
   \************************************/
-/***/ ((module) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
 function cardClasses(){
 
 //############################################# классы для карточек меню menu__field
@@ -221,19 +230,7 @@ class MenuCard {
   //     ).render();
   //   });
   // });
-}
-  module.exports = cardClasses;
 
-
-/***/ }),
-
-/***/ "./js/modules/db-get.js":
-/*!******************************!*\
-  !*** ./js/modules/db-get.js ***!
-  \******************************/
-/***/ ((module) => {
-
-function dbGet(){
 
 //############################################# получение содержимого карточек товаров из db.json
 
@@ -289,7 +286,7 @@ axios
 // const card1 = new MenuCard();
 // card1.render();
 }
-module.exports = dbGet;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (cardClasses);
 
 
 /***/ }),
@@ -298,13 +295,21 @@ module.exports = dbGet;
 /*!*****************************!*\
   !*** ./js/modules/forms.js ***!
   \*****************************/
-/***/ ((module) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-function forms(){
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _show_modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./show-modal */ "./js/modules/show-modal.js");
+/* harmony import */ var _services_post_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/post-data */ "./js/services/post-data.js");
+
+
+function forms(formSelector,modalTimerID){
 
 //############################################# Формы. Отправка данных на сервер
 
-const forms = document.querySelectorAll("form");
+const forms = document.querySelectorAll(formSelector);
 
 const message = {
   loading: "img/forms/054 spinner.svg",
@@ -316,17 +321,7 @@ forms.forEach((elem) => {
   bindPostData(elem);
 });
 
-//это асинхронный участок кода, значит нужно async (ставится перед функцией в месте ее объявления) await (ставится перед каждой операцией, которую нужно дождаться)
-const postData = async (url, data) => {
-  const result = await fetch(url, {
-    method: "POST",
-    headers: { "Content-type": "application/json" },
-    body: data,
-  });
 
-  // console.log(result);
-  return await result.json();
-};
 
 function bindPostData(form) {
   form.addEventListener("submit", (e) => {
@@ -365,16 +360,16 @@ function bindPostData(form) {
     // console.log(json);
 
     //если внутри fetch промис попадает на ошибку с http (404) он не выдаст reject.
-    postData("http://localhost:3000/requests", json)
+    (0,_services_post_data__WEBPACK_IMPORTED_MODULE_1__.postData)("http://localhost:3000/requests", json)
       .then((data) => {
         console.log(data);
-        showThanksModal(message.success);
+        (0,_show_modal__WEBPACK_IMPORTED_MODULE_0__.showThanksModal)(message.success,modalTimerID);
         statusMessage.remove();
         console.log("statusMessage= " + statusMessage);
       })
       .catch((e) => {
         console.log(e);
-        showThanksModal(message.faulure + e);
+        (0,_show_modal__WEBPACK_IMPORTED_MODULE_0__.showThanksModal)(message.faulure + e,modalTimerID);
       })
       .finally(() => {
         form.reset();
@@ -382,7 +377,7 @@ function bindPostData(form) {
   });
 }
 }
-module.exports = forms;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (forms);
 
 
 /***/ }),
@@ -391,67 +386,79 @@ module.exports = forms;
 /*!*****************************!*\
   !*** ./js/modules/modal.js ***!
   \*****************************/
-/***/ ((module) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-function modal(){
-
-//############################################# modal window "связаться с нами"
-const modalTrigger = document.querySelectorAll("[data-modal]"),
-modalWindow = document.querySelector(".modal");
-
-function openModal() {
-modalWindow.classList.add("show");
-modalWindow.classList.remove("hide");
-//modalWindow.classList.toggle("show");
-document.body.style.overflow = "hidden";
-clearInterval(modalTimerID);
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "closeModal": () => (/* binding */ closeModal),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   "openModal": () => (/* binding */ openModal)
+/* harmony export */ });
+function closeModal(modalSelector) {
+  const modalWindow = document.querySelector(modalSelector);
+  modalWindow.classList.remove("show");
+  modalWindow.classList.add("hide");
+  //modalWindow.classList.toggle("show");
+  document.body.style.overflow = ""; //scroll выставится по умолчанию
 }
+function openModal(modalSelector, modalTimerID) {
+  const modalWindow = document.querySelector(modalSelector);
+  modalWindow.classList.add("show");
+  modalWindow.classList.remove("hide");
+  //modalWindow.classList.toggle("show");
+  document.body.style.overflow = "hidden";
+  console.log(modalTimerID);
+  if (modalTimerID){
+  clearInterval(modalTimerID);}
 
-modalTrigger.forEach((elem) => {
-elem.addEventListener("click", () => {
-  openModal();
-});
-});
+}
+function modal(triggerSelector, modalSelector,modalTimerID) {
+  //############################################# modal window "связаться с нами"
+  const modalTrigger = document.querySelectorAll(triggerSelector),
+    modalWindow = document.querySelector(modalSelector);
 
-function closeModal() {
-modalWindow.classList.remove("show");
-modalWindow.classList.add("hide");
-//modalWindow.classList.toggle("show");
-document.body.style.overflow = ""; //scroll выставится по умолчанию
-}
 
-//закрываем модальное окно если клик вне пределов его содержимого
-//modalWindow = это контейнер для modal__dialog. если клик внутри modalWindow и только по нему - закрыть, если где-то еще (по самому телу диалога) - ничего не делать
-modalWindow.addEventListener("click", (e) => {
-if (e.target === modalWindow || e.target.getAttribute("data-close") == "") {
-  closeModal();
-}
-});
 
-//коды можно нагуглить или посмотреть на сайте keycode.info
-document.addEventListener("keydown", (event) => {
-if (event.code === "Escape" && modalWindow.classList.contains("show")) {
-  closeModal();
-}
-});
+  modalTrigger.forEach((elem) => {
+    elem.addEventListener("click", () => {
+      openModal(modalSelector,modalTimerID);
+    });
+  });
 
-//                                                      ************ раскомментировать перед деплоем
-const modalTimerID = setTimeout(openModal, 30000);
 
-function showModalByScroll() {
-//прокрутка страницы вниз + видимая высота окна >= общая высота документа (пролистано до самого конца)
-if (
-  window.pageYOffset + document.documentElement.clientHeight >=
-  document.documentElement.scrollHeight
-) {
-  openModal();
-  window.removeEventListener("scroll", showModalByScroll); //удалить обработчик можно и так - точно повторив то, что было назначено в его объявлении
-  clearInterval(modalTimerID);
+
+  //закрываем модальное окно если клик вне пределов его содержимого
+  //modalWindow = это контейнер для modal__dialog. если клик внутри modalWindow и только по нему - закрыть, если где-то еще (по самому телу диалога) - ничего не делать
+  modalWindow.addEventListener("click", (e) => {
+    if (e.target === modalWindow || e.target.getAttribute("data-close") == "") {
+      closeModal(modalSelector);
+    }
+  });
+
+  //коды можно нагуглить или посмотреть на сайте keycode.info
+  document.addEventListener("keydown", (event) => {
+    if (event.code === "Escape" && modalWindow.classList.contains("show")) {
+      closeModal(modalSelector);
+    }
+  });
+
+
+  function showModalByScroll() {
+    //прокрутка страницы вниз + видимая высота окна >= общая высота документа (пролистано до самого конца)
+    if (
+      window.pageYOffset + document.documentElement.clientHeight >=
+      document.documentElement.scrollHeight
+    ) {
+      openModal(modalSelector,modalTimerID);
+      window.removeEventListener("scroll", showModalByScroll); //удалить обработчик можно и так - точно повторив то, что было назначено в его объявлении
+      clearInterval(modalTimerID);
+    }
+  }
+  window.addEventListener("scroll", showModalByScroll);
 }
-}
-window.addEventListener("scroll", showModalByScroll);
-}
-module.exports = modal;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (modal);
+
+
 
 
 /***/ }),
@@ -460,53 +467,136 @@ module.exports = modal;
 /*!**********************************!*\
   !*** ./js/modules/show-modal.js ***!
   \**********************************/
-/***/ ((module) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   "showThanksModal": () => (/* binding */ showThanksModal)
+/* harmony export */ });
+/* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modal */ "./js/modules/modal.js");
+
+
+//############################################# показ модального окна (modal__content)
+function showThanksModal(message,modalTimerID) {
+  const originalDialog = document.querySelector(".modal__content");
+  console.log(originalDialog);
+  originalDialog.classList.add("hide");
+  (0,_modal__WEBPACK_IMPORTED_MODULE_0__.openModal)(".modal",modalTimerID);
+
+  const ThanksModal = document.createElement("div");
+  ThanksModal.classList.add("modal__content");
+  ThanksModal.innerHTML = `
+    <div class="modal__close" data-close>×</div>
+    <div class="modal__title">${message}</div>
+  `;
+
+  document.querySelector(".modal__dialog").append(ThanksModal);
+  setTimeout(() => {
+    ThanksModal.remove();
+    originalDialog.classList.add("show");
+    originalDialog.classList.remove("hide");
+    (0,_modal__WEBPACK_IMPORTED_MODULE_0__.closeModal)(".modal");
+  }, 4000);
+}
+
 
 function showModal(){
 
-//############################################# показ модального окна (modal__content)
-
-function showThanksModal(message) {
-    const originalDialog = document.querySelector(".modal__content");
-    console.log(originalDialog);
-    originalDialog.classList.add("hide");
-    openModal();
-
-    const ThanksModal = document.createElement("div");
-    ThanksModal.classList.add("modal__content");
-    ThanksModal.innerHTML = `
-      <div class="modal__close" data-close>×</div>
-      <div class="modal__title">${message}</div>
-    `;
-
-    document.querySelector(".modal__dialog").append(ThanksModal);
-    setTimeout(() => {
-      ThanksModal.remove();
-      originalDialog.classList.add("show");
-      originalDialog.classList.remove("hide");
-      closeModal();
-    }, 4000);
-  }
 
   fetch("http://localhost:3000/menu")
     .then((data) => data.json())
     .then((res) => console.log(res))
     .catch((e) => console.log(e));
 }
-module.exports = showModal;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (showModal);
+
 
 
 /***/ }),
 
-/***/ "./js/modules/slider-nav.js":
-/*!**********************************!*\
-  !*** ./js/modules/slider-nav.js ***!
-  \**********************************/
-/***/ ((module) => {
+/***/ "./js/modules/slider.js":
+/*!******************************!*\
+  !*** ./js/modules/slider.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-function sliderNav(){
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _timer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./timer */ "./js/modules/timer.js");
+// import tabs from "./modules/tabs";
 
-//############################################# навигация для слайдов
+function slider({container, nextArrow,prevArrow,totalCounter,currentCounter,wrapper,field}){
+
+//############################################# слайдер картинок
+function SliderNavigation(sliderNumber) {
+  slidesField.style.transform = `translateX(-${
+    sliderNumber * widthNum - widthNum
+  }px)`;
+  currentSlide.textContent = (0,_timer__WEBPACK_IMPORTED_MODULE_0__.addZeroToNumbers)(sliderNumber);
+
+  //убираем у всех навигационных элементов  класс активности
+  dots.forEach((elem) => {
+    elem.classList.remove("dot-active");
+  });
+  //находим соответствующий навигационный элемент по data- аттрибуту и добавляем ему класс активности
+  document
+    .querySelector(`[data-number="${sliderNumber}"]`)
+    .classList.add("dot-active");
+  current = sliderNumber;
+}
+  // мое решение
+  const prevSlide = document.querySelector(prevArrow),
+    nextSlide = document.querySelector(nextArrow),
+    currentSlide = document.querySelector(currentCounter),
+    totalSlides = document.querySelector(totalCounter),
+    sliderImages = document.querySelectorAll(container),
+    slidesWrapper = document.querySelector(wrapper),
+    slidesField = document.querySelector(field);
+  let widthPx = window.getComputedStyle(slidesWrapper).width; //ширина 1 слайда
+  // const widthNum = Math.floor(widthPx.slice(0, widthPx.length - 2));
+  // const widthNum = Math.floor(widthPx.replace(/\D/g,""));//заменяем не числа на ""
+  const widthNum = Math.floor((0,_timer__WEBPACK_IMPORTED_MODULE_0__.getNumbersOnly)(widthPx));
+  widthPx = widthNum + "px";
+
+  let current = 1;
+
+  totalSlides.textContent = (0,_timer__WEBPACK_IMPORTED_MODULE_0__.addZeroToNumbers)(sliderImages.length);
+
+  slidesField.style.width = 100 * sliderImages.length + "%";
+  slidesField.style.display = "flex";
+  slidesField.style.transition = "0.5s all";
+
+  slidesWrapper.style.overflow = "hidden";
+  sliderImages.forEach((slide) => {
+    slide.style.width = widthPx;
+  });
+  nextSlide.addEventListener("click", function () {
+    // + к offset добавляется ширина еще 1 слайда и вся линия слайдов будет смещаться на ширину 1 слайда ->
+    if (current == sliderImages.length) {
+      //width = "500px"
+      current = 1;
+    } else {
+      current += 1;
+    }
+
+    SliderNavigation(current);
+  });
+  prevSlide.addEventListener("click", function () {
+    // - от offset отнимается ширина еще 1 слайда и вся линия слайдов будет смещаться на ширину 1 слайда <-
+    if (current == 1) {
+      //width = "500px"
+      current = sliderImages.length;
+    } else {
+      current -= 1;
+    }
+    SliderNavigation(current);
+  });
+
+
+  //############################################# навигация для слайдов
 const sliderContainer = document.querySelector(".offer__slider"),
 sliderIndicators = document.createElement("ol"),
 dots = [];
@@ -572,87 +662,8 @@ SliderNavigation(1);
 
 // renderSliderImage(0);
 }
-module.exports = sliderNav;
-
-
-/***/ }),
-
-/***/ "./js/modules/slider.js":
-/*!******************************!*\
-  !*** ./js/modules/slider.js ***!
-  \******************************/
-/***/ ((module) => {
-
-function slider(){
-
-//############################################# слайдер картинок
-  // мое решение
-  const prevSlide = document.querySelector(".offer__slider-prev"),
-    nextSlide = document.querySelector(".offer__slider-next"),
-    currentSlide = document.querySelector("#current"),
-    totalSlides = document.querySelector("#total"),
-    sliderImages = document.querySelectorAll(".offer__slide"),
-    slidesWrapper = document.querySelector(".offer__slider-wrapper"),
-    slidesField = document.querySelector(".offer__slider-inner");
-  let widthPx = window.getComputedStyle(slidesWrapper).width; //ширина 1 слайда
-  //без округления херня получается
-  // const widthNum = Math.floor(widthPx.slice(0, widthPx.length - 2));
-  // const widthNum = Math.floor(widthPx.replace(/\D/g,""));//заменяем не числа на ""
-  const widthNum = Math.floor(getNumbersOnly(widthPx));
-  widthPx = widthNum + "px";
-
-  let current = 1;
-
-  totalSlides.textContent = addZeroToNumbers(sliderImages.length);
-
-  slidesField.style.width = 100 * sliderImages.length + "%";
-  slidesField.style.display = "flex";
-  slidesField.style.transition = "0.5s all";
-
-  slidesWrapper.style.overflow = "hidden";
-  sliderImages.forEach((slide) => {
-    slide.style.width = widthPx;
-  });
-  nextSlide.addEventListener("click", function () {
-    // + к offset добавляется ширина еще 1 слайда и вся линия слайдов будет смещаться на ширину 1 слайда ->
-    if (current == sliderImages.length) {
-      //width = "500px"
-      current = 1;
-    } else {
-      current += 1;
-    }
-
-    SliderNavigation(current);
-  });
-  prevSlide.addEventListener("click", function () {
-    // - от offset отнимается ширина еще 1 слайда и вся линия слайдов будет смещаться на ширину 1 слайда <-
-    if (current == 1) {
-      //width = "500px"
-      current = sliderImages.length;
-    } else {
-      current -= 1;
-    }
-    SliderNavigation(current);
-  });
-
-  function SliderNavigation(sliderNumber) {
-    slidesField.style.transform = `translateX(-${
-      sliderNumber * widthNum - widthNum
-    }px)`;
-    currentSlide.textContent = addZeroToNumbers(sliderNumber);
-
-    //убираем у всех навигационных элементов  класс активности
-    dots.forEach((elem) => {
-      elem.classList.remove("dot-active");
-    });
-    //находим соответствующий навигационный элемент по data- аттрибуту и добавляем ему класс активности
-    document
-      .querySelector(`[data-number="${sliderNumber}"]`)
-      .classList.add("dot-active");
-    current = sliderNumber;
-  }
-}
-module.exports=slider;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (slider);
+// export {SliderNavigation};
 
 
 /***/ }),
@@ -661,14 +672,18 @@ module.exports=slider;
 /*!****************************!*\
   !*** ./js/modules/tabs.js ***!
   \****************************/
-/***/ ((module) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-function tabs(){
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function tabs(tabsSelector,tabsContentSelector,tabsParentSelector, activeClass){
 
 //############################################# Tabs
-const tabs = document.querySelectorAll(".tabheader__item"),
-tabsContent = document.querySelectorAll(".tabcontent"),
-tabsParent = document.querySelector(".tabheader__items");
+const tabs = document.querySelectorAll(tabsSelector),
+tabsContent = document.querySelectorAll(tabsContentSelector),
+tabsParent = document.querySelector(tabsParentSelector);
 
 function hideCollectionContent(Collection) {
 Collection.forEach((element) => {
@@ -685,13 +700,13 @@ Collection[i].classList.remove("hide");
 function hideTabContent() {
 hideCollectionContent(tabsContent);
 tabs.forEach((tab) => {
-  tab.classList.remove("tabheader__item_active");
+  tab.classList.remove(activeClass);
 });
 }
 function showTabContent(i = 0) {
 //значение по умолчанию для вызова без параметров
 showCollectionContent(tabsContent, i);
-tabs[i].classList.add("tabheader__item_active");
+tabs[i].classList.add(activeClass);
 }
 
 hideTabContent();
@@ -703,7 +718,7 @@ showTabContent();
 tabsParent.addEventListener("click", (event) => {
 const target = event.target;
 console.log(target);
-if (target && target.classList.contains("tabheader__item")) {
+if (target && target.classList.contains(tabsSelector.slice(1))) {//tabsSelector = ".tabheader__item", а нужно "tabheader__item"
   tabs.forEach((item, i) => {
     if (target == item) {
       console.log(item);
@@ -715,7 +730,7 @@ if (target && target.classList.contains("tabheader__item")) {
 }
 });
 }
-module.exports = tabs;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (tabs);
 
 
 /***/ }),
@@ -724,12 +739,32 @@ module.exports = tabs;
 /*!*****************************!*\
   !*** ./js/modules/timer.js ***!
   \*****************************/
-/***/ ((module) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-function timer(){
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "addZeroToNumbers": () => (/* binding */ addZeroToNumbers),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   "getNumbersOnly": () => (/* binding */ getNumbersOnly)
+/* harmony export */ });
+//*************** часто встречающаяся задача
+function addZeroToNumbers(num) {
+  if (num >= 0 && num < 10) {
+    return `0${num}`;
+  } else {
+    return num;
+  }
+}
+
+function getNumbersOnly(str) {
+  return parseFloat(str);
+  // str.replace(/\W/g, "");
+}
+
+function timer(id,deadLine){
 
 //############################################# Timer
-const deadLine = "2022-09-12";
+
 
 function getTimeRemaining(endtime) {
   const t = Date.parse(endtime) - Date.parse(new Date()),
@@ -746,18 +781,7 @@ function getTimeRemaining(endtime) {
   };
 }
 
-//*************** часто встречающаяся задача
-function addZeroToNumbers(num) {
-  if (num >= 0 && num < 10) {
-    return `0${num}`;
-  } else {
-    return num;
-  }
-}
 
-function getNumbersOnly(str) {
-  return str.replace(/\D/g, "");
-}
 
 function setClock(selector, endtime) {
   //".timer"
@@ -783,9 +807,37 @@ function setClock(selector, endtime) {
   }
 }
 
-setClock(".timer", deadLine);
+setClock(id, deadLine);
 }
-module.exports = timer;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (timer);
+
+
+
+
+/***/ }),
+
+/***/ "./js/services/post-data.js":
+/*!**********************************!*\
+  !*** ./js/services/post-data.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "postData": () => (/* binding */ postData)
+/* harmony export */ });
+//это асинхронный участок кода, значит нужно async (ставится перед функцией в месте ее объявления) await (ставится перед каждой операцией, которую нужно дождаться)
+const postData = async (url, data) => {
+    const result = await fetch(url, {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: data,
+    });
+
+    // console.log(result);
+    return await result.json();
+  };
+  
 
 
 /***/ })
@@ -817,38 +869,96 @@ module.exports = timer;
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-"use strict";
 /*!**********************!*\
   !*** ./js/script.js ***!
   \**********************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _modules_tabs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/tabs */ "./js/modules/tabs.js");
+/* harmony import */ var _modules_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/modal */ "./js/modules/modal.js");
+/* harmony import */ var _modules_calc__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/calc */ "./js/modules/calc.js");
+/* harmony import */ var _modules_card_classes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/card-classes */ "./js/modules/card-classes.js");
+/* harmony import */ var _modules_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/forms */ "./js/modules/forms.js");
+/* harmony import */ var _modules_show_modal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/show-modal */ "./js/modules/show-modal.js");
+/* harmony import */ var _modules_slider__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/slider */ "./js/modules/slider.js");
+/* harmony import */ var _modules_timer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/timer */ "./js/modules/timer.js");
+
+
+//cd "G:\VS Code HTML Projects\FirstWebpages\java-script\part2\project"
+//npm init -y
+//npx webpack
+
+// импорт возможен только на самом верхнем уровне видимости
+
+
+
+
+
+
+
+
 
 
 window.document.addEventListener("DOMContentLoaded", () => {
+  //                                                      ************ раскомментировать перед деплоем
+  const modalTimerID = setTimeout(() => {
+    (0,_modules_modal__WEBPACK_IMPORTED_MODULE_1__.openModal)(".modal", modalTimerID);
+    console.log("timer-set");
+  }, 30000);
 
-    const tabs = __webpack_require__(/*! ./modules/tabs */ "./js/modules/tabs.js"),
-    modal = __webpack_require__(/*! ./modules/modal */ "./js/modules/modal.js"),
-    calc = __webpack_require__(/*! ./modules/calc */ "./js/modules/calc.js"),
-    cardClasses = __webpack_require__(/*! ./modules/card-classes */ "./js/modules/card-classes.js"),
-    dbGet = __webpack_require__(/*! ./modules/db-get */ "./js/modules/db-get.js"),
-    forms = __webpack_require__(/*! ./modules/forms */ "./js/modules/forms.js"),
-    showModal = __webpack_require__(/*! ./modules/show-modal */ "./js/modules/show-modal.js"),
-    sliderNav = __webpack_require__(/*! ./modules/slider-nav */ "./js/modules/slider-nav.js"),
-    slider = __webpack_require__(/*! ./modules/slider */ "./js/modules/slider.js"),
-    timer = __webpack_require__(/*! ./modules/timer */ "./js/modules/timer.js");
+  (0,_modules_tabs__WEBPACK_IMPORTED_MODULE_0__["default"])(
+    ".tabheader__item",
+    ".tabcontent",
+    ".tabheader__items",
+    "tabheader__item_active"
+  );
+  (0,_modules_modal__WEBPACK_IMPORTED_MODULE_1__["default"])("[data-modal]", ".modal", modalTimerID);
+  (0,_modules_calc__WEBPACK_IMPORTED_MODULE_2__["default"])();
+  (0,_modules_card_classes__WEBPACK_IMPORTED_MODULE_3__["default"])();
+  (0,_modules_forms__WEBPACK_IMPORTED_MODULE_4__["default"])("form", modalTimerID);
+  (0,_modules_show_modal__WEBPACK_IMPORTED_MODULE_5__["default"])();
+  (0,_modules_slider__WEBPACK_IMPORTED_MODULE_6__["default"])({
+    prevArrow:".offer__slider-prev",
+    totalCounter:"#total",
+    field:".offer__slider-inner",
+    nextArrow:".offer__slider-next",
+    currentCounter:"#current",
+    wrapper:".offer__slider",
+    container:".offer__slide"
+  });
 
-    tabs();
-    modal();
-    calc();
-    cardClasses();
-    dbGet();
-    forms();
-    showModal();
-    sliderNav();
-    slider();
-    timer();
+  (0,_modules_timer__WEBPACK_IMPORTED_MODULE_7__["default"])(".timer", "2022-09-12");
 });
 
 })();

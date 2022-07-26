@@ -133,4 +133,4 @@ getCalcDynamicData("#height");
 getCalcDynamicData("#weight");
 getCalcDynamicData("#age");
 }
-module.exports = calc;
+export default calc;

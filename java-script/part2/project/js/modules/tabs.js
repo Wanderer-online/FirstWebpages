@@ -1,9 +1,9 @@
-function tabs(){
+function tabs(tabsSelector,tabsContentSelector,tabsParentSelector, activeClass){
 
 //############################################# Tabs
-const tabs = document.querySelectorAll(".tabheader__item"),
-tabsContent = document.querySelectorAll(".tabcontent"),
-tabsParent = document.querySelector(".tabheader__items");
+const tabs = document.querySelectorAll(tabsSelector),
+tabsContent = document.querySelectorAll(tabsContentSelector),
+tabsParent = document.querySelector(tabsParentSelector);
 
 function hideCollectionContent(Collection) {
 Collection.forEach((element) => {
@@ -20,13 +20,13 @@ Collection[i].classList.remove("hide");
 function hideTabContent() {
 hideCollectionContent(tabsContent);
 tabs.forEach((tab) => {
-  tab.classList.remove("tabheader__item_active");
+  tab.classList.remove(activeClass);
 });
 }
 function showTabContent(i = 0) {
 //значение по умолчанию для вызова без параметров
 showCollectionContent(tabsContent, i);
-tabs[i].classList.add("tabheader__item_active");
+tabs[i].classList.add(activeClass);
 }
 
 hideTabContent();
@@ -38,7 +38,7 @@ showTabContent();
 tabsParent.addEventListener("click", (event) => {
 const target = event.target;
 console.log(target);
-if (target && target.classList.contains("tabheader__item")) {
+if (target && target.classList.contains(tabsSelector.slice(1))) {//tabsSelector = ".tabheader__item", а нужно "tabheader__item"
   tabs.forEach((item, i) => {
     if (target == item) {
       console.log(item);
@@ -50,4 +50,4 @@ if (target && target.classList.contains("tabheader__item")) {
 }
 });
 }
-module.exports = tabs;
+export default tabs;

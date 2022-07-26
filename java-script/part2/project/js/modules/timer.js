@@ -1,7 +1,21 @@
-function timer(){
+//*************** часто встречающаяся задача
+function addZeroToNumbers(num) {
+  if (num >= 0 && num < 10) {
+    return `0${num}`;
+  } else {
+    return num;
+  }
+}
+
+function getNumbersOnly(str) {
+  return parseFloat(str);
+  // str.replace(/\W/g, "");
+}
+
+function timer(id,deadLine){
 
 //############################################# Timer
-const deadLine = "2022-09-12";
+
 
 function getTimeRemaining(endtime) {
   const t = Date.parse(endtime) - Date.parse(new Date()),
@@ -18,18 +32,7 @@ function getTimeRemaining(endtime) {
   };
 }
 
-//*************** часто встречающаяся задача
-function addZeroToNumbers(num) {
-  if (num >= 0 && num < 10) {
-    return `0${num}`;
-  } else {
-    return num;
-  }
-}
 
-function getNumbersOnly(str) {
-  return str.replace(/\D/g, "");
-}
 
 function setClock(selector, endtime) {
   //".timer"
@@ -55,6 +58,8 @@ function setClock(selector, endtime) {
   }
 }
 
-setClock(".timer", deadLine);
+setClock(id, deadLine);
 }
-module.exports = timer;
+export default timer;
+export {getNumbersOnly};
+export {addZeroToNumbers};
