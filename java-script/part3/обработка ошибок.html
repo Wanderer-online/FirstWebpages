@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <button id="btn">button</button>
+    <script>
+        "use strict";
+        
+        try {//код, где допустимы ошибки
+            document.querySelector("#btn").addEventListener("click",() =>{console.log("click");});
+            console.log("norm");
+            document.querySelector("#none").addEventListener("click",() =>{console.log("click");});
+        }
+        catch(e){//обработка ошибки (если ошбок нет - пропускается)
+            console.log(e);//Cannot read properties of null (reading 'addEventListener') at обработка ошибок.html:17:44
+            console.log(e.name);//TypeError
+            console.log(e.message);//Cannot read properties of null (reading 'addEventListener')
+            console.log(e.stack);//TypeError: Cannot read properties of null (reading 'addEventListener')   at обработка ошибок.html:17:44
+        }
+        finally{//этот блок выполняется всегда. здесь лучше не ошибаться
+            console.log("end of try at any result");
+        }
+        console.log("after try");
+
+
+
+
+
+    </script>
+</body>
+</html>
