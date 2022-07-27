@@ -4,6 +4,8 @@
 //npm init -y
 //npx webpack
 
+// import "core-js/stable";
+
 // импорт возможен только на самом верхнем уровне видимости
 import tabs from "./modules/tabs";
 import modal from "./modules/modal";

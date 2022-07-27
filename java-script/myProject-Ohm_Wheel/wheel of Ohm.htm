@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+
+        background-color: #000;
+      }
+      section{
+        margin: 0 auto;
+        max-width: 920px;
+      }
+      .main-svg .cls-1 {
+        fill: #ffe1a3;
+      }
+      .main-svg .cls-1,
+      .main-svg .cls-2,
+      .main-svg .cls-3,
+      .main-svg .cls-4 {
+        stroke: #000;
+        stroke-linejoin: round;
+      }
+      .main-svg .cls-2 {
+        fill: #caa7cf;
+      }
+      .main-svg .cls-3 {
+        fill: #add084;
+      }
+      .main-svg .cls-4 {
+        fill: #9fc7eb;
+      }
+      .main-svg .center {
+        fill: #abff57;
+      }
+      .main-svg .text-group {
+        font-size: 200%;
+        fill: #fff;
+      }
+      /* .main-svg image {
+        width: 35px;
+      } */
+      .main-svg a:hover path {
+        /* stroke-width:3px; */
+        /* stroke: #ffc722; */
+        fill: #abff57;
+      }
+
+      .main-form {
+        width: 100%;
+        /* position: absolute; */
+        top: 0;
+        left: 0;
+        background-color: #2e373a;
+        margin: 10px auto 0 auto;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        position: relative;
+        text-align: center;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .val1,
+      .val2,
+      .out {
+        width: 80%;
+        height: 7vw;
+        border-radius: 1vw;
+        display: block;
+        box-sizing: border-box;
+        color: #fff;
+        /* background-color: #b5cce0; */
+        background: linear-gradient(0deg, rgb(187, 233, 255) 0%, rgb(44, 171, 230) 18%);
+        border: 1px solid black;
+        font-size: 6vw;
+        text-align: center;
+      }
+      .out {
+        /* background-color: #a3d39d; */
+        background: linear-gradient(0deg, rgb(227, 255, 236) 0%, rgb(138, 241, 152) 18%);
+      }
+      .input-container {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: center;
+      }
+      .input-container span {
+        font-size: 6vw;
+        font-weight: 700;
+        width: 7vw;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <svg
+        width="100%"
+        height="100%"
+        shape-rendering="geometricPrecision"
+        viewBox="0 0 262 262"
+        class="main-svg"
+      >
+        <a xlink:href="#">
+          <path
+            class="cls-1"
+            d="M129.67.5a129.26,129.26,0,0,1,64.54,17.26L155.5,84.92A51.72,51.72,0,0,0,129.69,78Z"
+          />
+          <image width="35" x="135" y="35" href="./svg/1.svg" />
+        </a>
+        <a xlink:href="#">
+          <path
+            class="cls-1"
+            d="M194.32,17.82A129.22,129.22,0,0,1,241.5,64.94L174.42,103.8A51.61,51.61,0,0,0,155.55,85Z"
+          />
+          <image height="35" x="190" y="45" href="./svg/2.svg" />
+        </a>
+        <a xlink:href="#">
+          <path
+            class="cls-1"
+            d="M241.56,65.06a129.1,129.1,0,0,1,17.34,64.51l-77.52.08a51.75,51.75,0,0,0-6.93-25.81Z"
+          />
+          <image width="50" x="190" y="100" href="./svg/3.svg" />
+        </a>
+        <a xlink:href="#">
+          <path
+            class="cls-2"
+            d="M258.9,129.7a129.23,129.23,0,0,1-17.27,64.53l-67.16-38.72a51.63,51.63,0,0,0,6.91-25.81Z"
+          />
+          <image height="35" x="210" y="135" href="./svg/4.svg" />
+        </a>
+        <a xlink:href="#">
+          <path
+            class="cls-2"
+            d="M241.56,194.34a129.14,129.14,0,0,1-47.13,47.17l-38.84-67.08a51.79,51.79,0,0,0,18.86-18.87Z"
+          />
+          <image height="36" x="190" y="180" href="./svg/5.svg" />
+        </a>
+        <a xlink:href="#">
+          <path
+            class="cls-2"
+            d="M194.32,241.58A129.19,129.19,0,0,1,129.8,258.9l-.06-77.52a51.75,51.75,0,0,0,25.81-6.93Z"
+          />
+          <image height="36" x="145" y="200" href="./svg/6.svg" />
+        </a>
+        <a xlink:href="#">
+          <path
+            class="cls-3"
+            d="M129.67,258.9a129.08,129.08,0,0,1-64.41-17.22l38.66-67.19a51.7,51.7,0,0,0,25.77,6.89Z"
+          />
+          <image height="35" x="100" y="200" href="./svg/7.svg" />
+        </a>
+        <a xlink:href="#">
+          <path
+            class="cls-3"
+            d="M65.14,241.62a129.25,129.25,0,0,1-47.27-47.21L85,155.58a51.68,51.68,0,0,0,18.91,18.89Z"
+          />
+          <image height="35" x="55" y="180" href="./svg/8.svg" />
+        </a>
+        <a xlink:href="#">
+          <path
+            class="cls-3"
+            d="M17.81,194.3A129.13,129.13,0,0,1,.5,129.78L78,129.73a51.74,51.74,0,0,0,6.92,25.81Z"
+          />
+          <image height="38" x="20" y="135" href="./svg/9.svg" />
+        </a>
+        <a xlink:href="#">
+          <path
+            class="cls-4"
+            d="M.5,129.65A129.26,129.26,0,0,1,17.73,65.23l67.18,38.68A51.7,51.7,0,0,0,78,129.68Z"
+          />
+          <image width="35" x="20" y="100" href="./svg/10.svg" />
+        </a>
+        <a xlink:href="#">
+          <path
+            class="cls-4"
+            d="M17.8,65.12A129.15,129.15,0,0,1,65,17.86L103.82,85a51.72,51.72,0,0,0-18.88,18.91Z"
+          />
+          <image width="36" x="45" y="55" href="./svg/11.svg" />
+        </a>
+        <a xlink:href="#">
+          <path
+            class="cls-4"
+            d="M65.12,17.8A129.22,129.22,0,0,1,129.52.5L129.63,78a51.64,51.64,0,0,0-25.76,6.92Z"
+          />
+          <image height="36" x="95" y="22" href="./svg/12.svg" />
+        </a>
+        <path
+          class="center"
+          d="M130,130 v-50 a50,50 1 0,1 0,100 a50,50 1 0,1 0,-100"
+        />
+        <text x="240" y="30" text-anchor="middle" class="text-group">U</text>
+        <text x="240" y="250" text-anchor="middle" class="text-group">R</text>
+        <text x="20" y="250" text-anchor="middle" class="text-group">I</text>
+        <text x="20" y="30" text-anchor="middle" class="text-group">P</text>
+      </svg>
+
+      <br />
+
+      <form action="#" class="main-form">
+        <div class="input-container">
+          <span id="value1">R</span><input type="text" class="val1" />
+        </div>
+        <div class="input-container">
+          <span id="value2">I</span><input type="text" class="val2" />
+        </div>
+        <div class="input-container">
+          <span id="output">U</span><output class="out">0</output>
+        </div>
+      </form>
+
+      план для жабаскрипта - свитч с проваливанием для результата без
+      проваливания для вводимых данных 1 и 2
+    </section>
+  </body>
+</html>

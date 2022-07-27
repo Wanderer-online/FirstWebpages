@@ -11,6 +11,23 @@ module.exports = {
   },
   watch: true,//после вызова webpack будет отслеживать изменение исходных файлов и собирать проект при каждом изменении (настраивается)
   devtool: "source-map",//сохранение исходников
-  module: {},//дополнительные модули webpack
+  module: {
+    rules: [
+      {
+        test: /\.m?js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [['@babel/preset-env', {
+                debug: true,
+                corejs: 3,
+                useBuiltIns: "usage"
+            }]]
+          }
+        }
+      }
+    ] 
+  },//дополнительные модули webpack
   //,plugins:{}//подключение плагинов
 };
