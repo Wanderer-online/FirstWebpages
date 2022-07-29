@@ -1,0 +1,162 @@
+body {
+  background-color: #000;
+  background-image: url("../img/lightning.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 20px 0 0 0;
+}
+a{
+  text-decoration: none;
+  color:#000;
+}
+section {
+  margin: 0 auto;
+  max-width: 620px;
+}
+.main-svg .cls-1 {
+  fill: #ffe1a3;
+}
+.main-svg .cls-1,
+.main-svg .cls-2,
+.main-svg .cls-3,
+.main-svg .cls-4 {
+  stroke: #000;
+  stroke-linejoin: round;
+}
+.main-svg .cls-2 {
+  fill: #caa7cf;
+}
+.main-svg .cls-3 {
+  fill: #add084;
+}
+.main-svg .cls-4 {
+  fill: #9fc7eb;
+}
+.main-svg .center {
+  stroke: #000000;
+  stroke-width: 3px;
+}
+.main-svg .p {
+  fill: #7bb8ec;
+}
+.main-svg .u {
+  fill: #ffd071;
+}
+.main-svg .i {
+  fill: #90d849;
+}
+.main-svg .r {
+  fill: #c574cf;
+}
+
+.main-svg .text-group {
+  font-size: 200%;
+  fill: rgb(0, 0, 0);
+}
+/* .main-svg image {
+    width: 35px;
+  } */
+.main-svg g:hover path {
+  /* stroke-width:3px; */
+  /* stroke: #ffc722; */
+  fill: #e8fad6;
+}
+.main-svg .selected path,
+.main-svg g.selected path, .main-svg .sel {
+  fill: #81ff02;
+}
+
+.main-form {
+  width: 100%;
+  /* position: absolute; */
+  top: 0;
+  left: 0;
+  background-color: #2e373a;
+  margin: 10px auto 0 auto;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  position: relative;
+  text-align: center;
+  border-radius: 1vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.value1,
+.value2,
+.output {
+  width: 80%;
+  height: fit-content;
+  border-radius: 1vw;
+  display: block;
+  box-sizing: border-box;
+  color: #fff;
+  /* background-color: #b5cce0; */
+  background: linear-gradient(
+    0deg,
+    rgb(187, 233, 255) 0%,
+    rgb(44, 171, 230) 18%
+  );
+  border: 1px solid black;
+  font-size: 6vh;
+  text-align: center;
+}
+.output {
+  /* background-color: #a3d39d; */
+  background: linear-gradient(
+    0deg,
+    rgb(227, 255, 236) 0%,
+    rgb(138, 241, 152) 18%
+  );
+}
+.value1:focus,
+.value2:focus {
+  background: linear-gradient(
+    0deg,
+    rgb(211, 246, 255) 0%,
+    rgb(0, 204, 255) 18%
+  );
+}
+
+.input-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-evenly;
+}
+.input-container span {
+  font-size: 6vh;
+  font-weight: 700;
+  width: 7vw;
+  color: #fff;
+}
+
+/* Hide Arrows From Input Number */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+
+footer{
+  margin-top: 2vh;
+  background: linear-gradient(
+    0deg,
+    rgb(90, 90, 90) 0%,
+    rgb(0, 0, 0) 50%
+  );
+  font-size: 2.6vh;
+  color:#e0e0e0;
+  text-align: center;
+}
+footer a{
+  color:#d2ffd2;
+}

@@ -1,0 +1,9 @@
+cd ""
+surge
+
+->login
+8estworker@gmail.com
+->pass
+J.&/oLg5#_zfp{
+
+ohms-law-calculator.surge.sh
