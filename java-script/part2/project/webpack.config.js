@@ -19,7 +19,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: [['@babel/preset-env', {
+            "presets": [['@babel/preset-env', {
                 debug: true,
                 corejs: 3,
                 useBuiltIns: "usage"
@@ -27,7 +27,7 @@ module.exports = {
           }
         }
       }
-    ] 
+    ]
   },//дополнительные модули webpack
   //,plugins:{}//подключение плагинов
 };

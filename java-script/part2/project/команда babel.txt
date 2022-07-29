@@ -1,0 +1,35 @@
+ cd "G:\VS Code HTML Projects\FirstWebpages\java-script\part2\project"
+npm init
+
+ npm install babel-cli -g
+
+npm i --save-dev babel-loader
+
+npm i --save-dev core-js
+
+
+npm install --save-dev @babel/core @babel/cli @babel/preset-env
+
+
+//нужен или .babelrc
+// или в webpack.config.js
+module: {
+    rules: [
+      {
+        test: /\.m?js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            "presets": [['@babel/preset-env', {
+                debug: true,
+                corejs: 3,
+                useBuiltIns: "usage"
+            }]]
+          }
+        }
+      }
+    ]
+  }
+
+npx webpack
