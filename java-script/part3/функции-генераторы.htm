@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      "use strict";
+
+      function* generatorName() {
+        yield "S";
+        yield "c";
+        yield "r";
+        yield "i";
+        yield "p";
+        yield "t";
+      }
+
+      const str = generatorName();
+
+      // console.log(str.next().value);
+      console.log(str.next()); //{ value "S", done: false}
+      console.log(str.next()); //{ value "c", done: false}
+      console.log(str.next()); //{ value "r", done: false}
+      console.log(str.next()); //{ value "i", done: false}
+      console.log(str.next()); //{ value "p", done: false}
+      console.log(str.next()); //{ value "t", done: false}
+      console.log(str.next()); //{ value undefined, done: true}
+
+      function* generatorCount(n) {
+        for (let i = 0; i < n; i++) {
+          yield i;
+        }
+      }
+      const counter = generatorCount(7);
+
+      console.log("counter = " + counter.next().value); //0
+      console.log("counter = " + counter.next().value); //1
+      console.log("counter = " + counter.next().value); //2
+
+      for (let n of generatorCount(10)) {
+        console.log("for of " + n); //Выдаст 0 потом 1, 2... 9
+      }
+    </script>
+  </body>
+</html>
