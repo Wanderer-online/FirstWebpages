@@ -32,7 +32,7 @@
 
       function* generatorCount(n) {
         for (let i = 0; i < n; i++) {
-          yield i;
+          yield i;//останавливает выполнение for до следующего вызова .next()
         }
       }
       const counter = generatorCount(7);
@@ -41,6 +41,8 @@
       console.log("counter = " + counter.next().value); //1
       console.log("counter = " + counter.next().value); //2
 
+
+      //запустить функцию-генератор максимальное количество раз
       for (let n of generatorCount(10)) {
         console.log("for of " + n); //Выдаст 0 потом 1, 2... 9
       }

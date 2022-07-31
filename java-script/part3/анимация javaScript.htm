@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+      }
+      .wrapper {
+        position: relative;
+        width: 400px;
+        height: 400px;
+        border: 3px solid red;
+      }
+      button {
+        margin-bottom: 10px;
+        margin-top: 10px;
+        width: 100px;
+        height: 40px;
+        background-color: yellow;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="btn">animation</button>
+    <div class="wrapper">
+      <div class="box"></div>
+    </div>
+
+    <script>
+      "use strict";
+      let intervalID,
+        i = 0;
+      const elem = document.querySelector(".box");
+
+      let pos = 0;
+
+      //переача setTimeout в переменную не обязательна, но она позволяет получить идентификатор этого таймера
+      const timer = setTimeout(
+        function (text) {
+          console.log(text);
+        },
+        2000,
+        "some text as argument 'text' to function. передается прямо в функцию которая вызывается по таймауту"
+      ); //2000 ms = 2s. аргументов может быть сколько угодно
+
+      //удаление уже установленного таймера
+      clearInterval(timer);
+
+      //   const tmer = setTimeout(logger, 3000); //имя без скобок
+      function logger() {
+        if (i === 3) {
+          clearInterval(intervalID);
+        }
+        console.log("text");
+        i++;
+      }
+
+      const btn = document.querySelector(".btn");
+
+      // function myAnimation() {
+      //   const elem = document.querySelector(".box");
+      //   let pos = 0;
+      //   const id = setInterval(frame, 10);
+      //   function frame() {
+      //     if (pos == 300) {
+      //       clearInterval(id);
+      //     } else {
+      //       pos++;
+      //       elem.style.top = pos + "px";
+      //       elem.style.left = pos + "px";
+      //     }
+      //   }
+      // }
+
+      function myAnimation() {
+        pos++;
+        elem.style.top = pos + "px";
+        elem.style.left = pos + "px";
+
+        if(pos<300){
+          requestAnimationFrame(myAnimation);//зацикливание анимации
+        }
+      }
+      btn.addEventListener("click", ()=>{requestAnimationFrame(myAnimation)});//без ()=>{} передаваемая с параметром функция выполняется сразу!
+
+      // как отменить анимацию? присвоить вызов функции анимации переменной
+      let id = requestAnimationFrame(myAnimation);
+      cancelAnimationFrame(id);
+
+
+      //рекурсивный вызов setTimeout позволяет убедиться, что промежутки между завершеним всех операций действительно равны установленному значению задержки. Без рекурсии следующие вызовы функции будут стартовать не дожидаясь завершения предыдущей
+      //   let id = setTimeout(function logG() {
+      //     console.log("text");
+      //     id = setTimeout(logG, 500);
+      //   }, 500);
+    </script>
+  </body>
+</html>
