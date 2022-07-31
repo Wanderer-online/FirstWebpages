@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab maxime amet
+      debitis iure, error quod aperiam? Asperiores, ex illum obcaecati
+      consequatur deleniti eos vel quam, alias facere nam veritatis quas.
+    </p>
+    <script>
+      "use strict";
+
+      console.log("1");
+
+      setTimeout(() => {
+        console.log("timeout - 4-1");
+      }, 4000);
+
+      setTimeout(() => {
+        console.log("timeout - 4-2");
+      }, 4000);
+
+      console.log("2");
+      //1
+      //2
+      //timeout - 4-1
+      //timeout - 4-2
+
+      //пример с блокированием дальнейшей работы страницы тяжелым скриптом
+      let k = 0;
+
+      function count() {
+        for (let i = 0; i < 1e9; i++) {
+          k++;
+        }
+        alert("loop ended");
+      }
+
+      count();
+
+      //задача на собеседованиях
+      setTimeout(() => {
+        console.log(1);
+      }, 0);
+      console.log(2);
+      //2
+      //1
+
+
+    </script>
+  </body>
+</html>
