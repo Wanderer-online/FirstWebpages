@@ -103,6 +103,7 @@ coordinates.calcSquare(); //250
 
 //######################## Деструктуризация
 //############ Объектов:
+//https://learn.javascript.ru/destructuring-assignment
 const someAnotherUser = {
 	Username: {
 		first: "Sam",
@@ -120,6 +121,10 @@ const {
 } = someAnotherUser; //создаются 3 новые переменные: Username=someAnotherUser.name, pass=someAnotherUser.pass, rights=someAnotherUser.rights
 console.log(first, second, pass, rights); //Sam Johnes qwerty user
 //############ Важный нюанс!!! - имена переменных и имена параметров объекта должны совпадать, если переменная с таким именем уже есть - она будет перезаписана!!!
+//Если мы хотим присвоить свойство объекта переменной с другим названием, то мы можем использовать двоеточие
+const {pass: customPassVar}=someAnotherUser; //customPassVar будет именем переменной
+const {Username:{first:customVarName}} = someAnotherUser;
+//Двоеточие показывает «что : куда идёт»
 
 //!!!Важно!!! параметры по умолчанию для передаваемых как параметры функции объектов
 function connect({ host = "localhost", port = 3000, user = "default" } = {}) {
