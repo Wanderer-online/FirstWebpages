@@ -12,3 +12,4 @@ tns({
     viewportMax: 600
     // autoWidth:true
   });
+  
