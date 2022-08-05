@@ -20,7 +20,7 @@
 .app-list-item .btn-trash {
     color: red;
 }
-.app-list-item .fa-heart {
+.app-list-item .bi-heart-fill {
     width: 35px;
     height: 35px;
     text-align: center;
@@ -40,13 +40,15 @@
   transition: 0.5s all;
 }
 
-.app-list-item.like .fa-heart {
+.app-list-item.like .bi-heart-fill {
     opacity: 1;
     transform: translateX(0px);
 }
 
 .app-list-item.important .app-list-item-label {
   color: #FFD700;
+  text-shadow:#6b6400 1px 0 ;
+
 }
 
 .app-list-item.important .btn-star {
