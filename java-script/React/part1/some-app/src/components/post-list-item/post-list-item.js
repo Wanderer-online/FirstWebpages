@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import "./post-list-item.css";
+import "./post-list-item.sass";
 
 class PostListItem extends Component {
 	constructor(properties) {
@@ -9,7 +9,7 @@ class PostListItem extends Component {
 		this.state = { liked: false };
 	}
 
-	//дополнительные скобки после => нужны для соответствия форматированию jsx
+	//дополнительные скобки после => нужны для соответствия форматированию jsx - результат должен быть в ()
 	onImportant = () => {
 		this.setState(({ important }) => ({
 			//{important}===state.important
