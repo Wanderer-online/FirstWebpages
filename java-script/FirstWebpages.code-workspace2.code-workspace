@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "..\\.."
+		},
+		{
+			"path": "..\\..\\JavaScript Essential Student\\003_Массивы\\Samples"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "FirstWebpages"
+	}
+}

@@ -1,63 +1,42 @@
 .app-list-item
-  font-size: 1.25rem
-
-  button
-    width: 35px
-    height: 35px
-    margin: 3px
-    font-size: 17px
-    border: none
-    cursor: pointer
-
-    &:focus
-      box-shadow: none
-      outline: none
-
-
-
-  .btn-star
-    color: #FFD700
-
-
-  .btn-trash
-    color: red
-
-
-  .bi-heart-fill
-    width: 35px
-    height: 35px
-    text-align: center
-    line-height: 35px
-    font-size: 16px
-    color: red
-    transition: 0.3s all
-    transform: translateX(30px)
-    opacity: 0
-
-
-
+	font-size: 1.25rem
+	button
+		width: 35px
+		height: 35px
+		margin: 3px
+		font-size: 17px
+		border: none
+		cursor: pointer
+		&:focus
+			box-shadow: none
+			outline: none
+	.btn-star
+		color: #FFD700
+	.btn-trash
+		color: red
+	.bi-heart-fill
+		width: 35px
+		height: 35px
+		text-align: center
+		line-height: 35px
+		font-size: 16px
+		color: red
+		transition: 0.3s all
+		transform: translateX(30px)
+		opacity: 0
+	&.like
+		.bi-heart-fill
+			opacity: 1
+			transform: translateX(0px)
+	&.important
+		.app-list-item-label
+			color: #FFD700
+			text-shadow: #6b6400 1px 0
+		.btn-star
+			color: #aeaeae
 .app-list-item-label
-  display: block
-  line-height: 35px
-  cursor: pointer
-  user-select: none
-  transition: 0.5s all
-
-
-.app-list-item
-  &.like .bi-heart-fill
-    opacity: 1
-    transform: translateX(0px)
-
-
-  &.important
-    .app-list-item-label
-      color: #FFD700
-      text-shadow: #6b6400 1px 0
-
-
-    .btn-star
-      color: #aeaeae
-
-
-
+	display: block
+	line-height: 35px
+	cursor: pointer
+	user-select: none
+	transition: 0.5s all
