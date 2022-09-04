@@ -25,15 +25,17 @@ class GoTService {
 	}
 
 	_transformHouse(house) {
+		// console.log(house);
 		return {
+
 			name: this._checkIfEmpty(house.name),
 			region: this._checkIfEmpty(house.region),
 			// founded: house.founded,
 			// founder: house.founder,
 			// diedOut: house.diedOut,
 			// swornMembers: house.swornMembers,
-			ancestralWeapons: this._checkIfEmpty(house.ancestralWeapons),
-			titles: this._checkIfEmpty(house.titles),
+			ancestralWeapons: this._checkIfEmpty(house.ancestralWeapons),//array
+			titles: this._checkIfEmpty(house.titles),//array
 			words: this._checkIfEmpty(house.words),
 			overlord: this._checkIfEmpty(house.overlord),
 		};
@@ -45,7 +47,7 @@ class GoTService {
 			// authors: book.authors,
 			numberOfPages: this._checkIfEmpty(book.numberOfPages),
 			released: this._checkIfEmpty(book.released),
-			publiser: this._checkIfEmpty(book.publiser),
+			publisher: this._checkIfEmpty(book.publisher),
 		};
 	}
 

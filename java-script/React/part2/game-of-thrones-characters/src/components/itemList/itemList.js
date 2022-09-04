@@ -10,23 +10,32 @@ export default class ItemList extends Component {
 		itemList: null,
 	};
 	componentDidMount() {
-		const {getData} = this.props;
-
+		const { getData } = this.props;
+		//41+i
 
 		// this.getService.getAllCharacters().then((response) => {
-			getData().then((response) => {
+		getData().then((response) => {
 			this.setState({ itemList: response });
 		});
 	}
 
 	renderItems(arr) {
 		return arr.map((item, i) => {
-
 			const label = this.props.renderItemName(item);
 
 			return (
-				<li key={item.name+item.born} className="list-group-item" onClick={()=>this.props.onElementSelected(41+i)}>
-                    {/* {console.log(item)} */}
+				<li
+					key={item.name + i}
+					className="list-group-item"
+					onClick={() =>
+						this.props.onElementSelected(
+							this.props.startCounter
+								? this.props.startCounter + i
+								: i+1
+						)
+					}
+				>
+					{/* {console.log(item)} */}
 					{label}
 				</li>
 			);
@@ -41,12 +50,9 @@ export default class ItemList extends Component {
 			return <GOTSpinner />;
 		}
 
-
-
-
 		return (
 			<ul className="item-list list-group">
-                {this.renderItems(itemList)}
+				{this.renderItems(itemList)}
 				{/* <li className="list-group-item">John Snow</li>
 				<li className="list-group-item">Brandon Stark</li>
 				<li className="list-group-item">Geremy</li> */}

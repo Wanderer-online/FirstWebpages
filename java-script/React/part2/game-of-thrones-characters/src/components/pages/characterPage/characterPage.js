@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import { Col, Row, Container, Button } from "react-bootstrap";
-import ItemList from "../itemList";
-import CharDetails, {Field} from "../charDetails";
-import GoTService from "../../services/GOT-service";
-import ErrorMessage from "../errorMessage/errorMessage";
-import RowBlock from "../rowBlock/rowBlock";
+import ItemList from "../../itemList";
+import ItemDetails, {Field} from "../../itemDetails";
+import GoTService from "../../../services/GOT-service";
+import ErrorMessage from "../../errorMessage/errorMessage";
+import RowBlock from "../../rowBlock/rowBlock";
 
 class CharacterPage extends Component {
 	state = {
@@ -42,16 +41,17 @@ class CharacterPage extends Component {
 				onElementSelected={this.onItemSelected}
 				getData={this.getService.getAllCharacters}
 				renderItemName={(item) => `${item.name} (${item.gender})`}
+				startCounter={41}
 			/>
 		);
 
 		const characterDetails = (
-			<CharDetails charID={this.state.selectedItem}>
+			<ItemDetails itemID={this.state.selectedItem} getItemData={this.getService.getCharacter}>
                 <Field field="gender" label="Gender"/>
                 <Field field="born" label="Born"/>
                 <Field field="died" label="Died"/>
                 <Field field="culture" label="Culture"/>
-            </CharDetails>
+            </ItemDetails>
 		);
 
 		return <RowBlock leftPart={itemsList} rightPart={characterDetails} />;

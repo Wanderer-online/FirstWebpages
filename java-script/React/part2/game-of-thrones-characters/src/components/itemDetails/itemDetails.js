@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import "./charDetails.css";
-import GoTService from "../../services/GOT-service";
+import "./itemDetails.css";
 
 const Field = ({ element, field, label }) => {
 	//element - это объект
@@ -15,8 +14,7 @@ const Field = ({ element, field, label }) => {
 };
 export { Field };
 
-export default class CharDetails extends Component {
-	getService = new GoTService();
+export default class ItemDetails extends Component {
 
 	state = {
 		element: null,
@@ -27,21 +25,23 @@ export default class CharDetails extends Component {
 	}
 
 	updateCharacter() {
-		const { charID } = this.props;
-		// console.log("id ", charID);
-		if (!charID) {
+		const {getItemData}=this.props;
+		const { itemID } = this.props;
+		// console.log("id ", itemID);
+		if (!itemID) {
 			return;
 		}
-		this.getService.getCharacter(charID).then((response) => {
+		getItemData(itemID).then((response) => {
 			this.setState({ element: response });
 		});
+
 
 		// сгенерировать ошибку
 		// this.a.b=0;
 	}
 
 	componentDidUpdate(prevProps) {
-		if (this.props.charID !== prevProps.charID) {
+		if (this.props.itemID !== prevProps.itemID) {
 			this.updateCharacter();
 		}
 	}
@@ -52,7 +52,7 @@ export default class CharDetails extends Component {
 		}
 
 		// console.log(this.state.element);
-		const { name, gender, born, died, culture } = this.state.element;
+		const { name } = this.state.element;
 
 		return (
 			<div className="char-details rounded">

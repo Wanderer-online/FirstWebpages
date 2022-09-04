@@ -2,12 +2,10 @@ import React, { Component } from "react";
 import { Col, Row, Container, Button } from "react-bootstrap";
 import Header from "../header";
 import RandomChar from "../randomChar";
-
-import ItemList from "../itemList";
-import CharDetails from "../charDetails";
-
 import GoTService from "../../services/GOT-service";
-import CharacterPage from "../characterPage"
+import CharacterPage from "../pages/characterPage"
+import BookPage from "../pages/bookPage"
+import HousePage from "../pages/housePage"
 import ErrorMessage from "../errorMessage/errorMessage";
 
 class App extends Component {
@@ -68,6 +66,8 @@ class App extends Component {
 					</Button>
 
 					<CharacterPage />
+					<BookPage />
+					<HousePage />
 					{/* <Row>
 				<Col md="6">
 					<ItemList onElementSelected={this.onItemSelected}
