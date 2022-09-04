@@ -57,30 +57,46 @@ class GoTService {
 		}
 	}
 
-	async getAllCharacters() {
+	getAllCharacters = async () => {
 		const result = await this.getRes("/characters?page=5&pageSize=10");
 		return result.map((val) => {
 			return this._transformCharacter(val);
 		});
-	}
-	async getCharacter(id) {
+	};
+	getCharacter = async (id) => {
 		const result = await this.getRes(`/characters/${id}`);
+		// const result = await this.getRes(`/characters/${15000}`);
+
 		return this._transformCharacter(result);
-	}
+	};
 
-	getAllBooks() {
-		return this.getRes("/books");
-	}
-	getBook(id) {
-		return this.getRes(`/books/${id}`);
-	}
+	getAllBooks = async () => {
+		const result = await this.getRes("/books");
+		return result.map((item) => {
+			return this._transformBook(item);
+		});
+	};
+	getBook = async (id) => {
+		const result = await this.getRes(`/books/${id}`);
+		return this._transformBook(result);
+	};
 
-	getAllHouses() {
-		return this.getRes("/houses");
-	}
-	getHouse(id) {
-		return this.getRes(`/houses/${id}`);
-	}
+	getAllHouses = async () => {
+		const result = await this.getRes("/houses");
+		return result.map((item) => {
+			return this._transformHouse(item);
+		});
+	};
+	getHouse = async (id) => {
+		const result = await this.getRes(`/houses/${id}`);
+		return this._transformHouse(result);
+	};
+	// getAllHouses() {
+	// 	return this.getRes("/houses");
+	// }
+	// getHouse(id) {
+	// 	return this.getRes(`/houses/${id}`);
+	// }
 	//дома и книги
 }
 

@@ -5,11 +5,6 @@ import GOTSpinner from "../spinner/spinner";
 import ErrorMessage from "../errorMessage/errorMessage";
 
 export default class RandomChar extends Component {
-	constructor() {
-		super();
-		this.updateCharacter(); //при создании инстанса этого класса сразу будет вызван его метод updateCharacter()
-	}
-
 	state = {
 		character: {},
 		loading: true,
@@ -27,7 +22,7 @@ export default class RandomChar extends Component {
 		console.error(err);
 	};
 
-	updateCharacter() {
+	updateCharacter = () =>{
 		const id = Math.floor(Math.random() * 140 + 25); //начинается с 25 и заканчивается 165
 		this.getService
 			.getCharacter(id)
@@ -35,22 +30,32 @@ export default class RandomChar extends Component {
 			.catch(this.onError);
 	}
 
+	componentDidMount(){
+		this.updateCharacter(); //при создании инстанса этого класса сразу будет вызван его метод updateCharacter()
+		this.randomCharacterUpdateInterval = setInterval(this.updateCharacter, 5000);
+	}
+	componentWillUnmount = () =>{
+		clearInterval(this.randomCharacterUpdateInterval);
+	}
+	componentDidUpdate(){
+	}
+
 	render() {
 		const { character, loading, error } = this.state;
 
 		//Если идет загрузка - вернуть spinner, если нет - вернуть основной контент
 		const spinner = loading ? <GOTSpinner /> : null;
-		const errMessage = error ? <ErrorMessage /> : null;
-        //Если есть ошибка или идет загрузка - выводит сообщение об ошибке, 
+		const errMessage = error ? <ErrorMessage messageStr={"Encountered some error while try to get data from server"} /> : null;
+        //Если есть ошибка или идет загрузка - выводит сообщение об ошибке,
 		const mainContent = !(loading||error) ? <MainContent char={character} /> : errMessage;
 
 		return (
-			<div className="random-block rounded">
+			<div className="random-block rounded mb-4">
                 {spinner}
                 {mainContent}
-                {errMessage}
                 </div>
 		);
+
 	}
 }
 
