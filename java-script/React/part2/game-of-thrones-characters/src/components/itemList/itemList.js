@@ -31,7 +31,7 @@ export default class ItemList extends Component {
 						this.props.onElementSelected(
 							this.props.startCounter
 								? this.props.startCounter + i
-								: i+1
+								: i+1//сделано для того чтобы персонажи начинались с 41-го, а не первого
 						)
 					}
 				>

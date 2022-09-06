@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import ItemList from "../../itemList";
-import ItemDetails, {Field} from "../../itemDetails";
-import GoTService from "../../../services/GOT-service";
-import ErrorMessage from "../../errorMessage/errorMessage";
-import RowBlock from "../../rowBlock/rowBlock";
+import ItemList from "../itemList";
+import ItemDetails, {Field} from "../itemDetails";
+import GoTService from "../../services/GOT-service";
+import ErrorMessage from "../errorMessage/errorMessage";
+import RowBlock from "../rowBlock/rowBlock";
 
 class BookPage extends Component {
 	state = {
