@@ -1,59 +1,79 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import ItemList from "../itemList";
 import ItemDetails, {Field} from "../itemDetails";
 import GoTService from "../../services/GOT-service";
 import ErrorMessage from "../errorMessage/errorMessage";
 import RowBlock from "../rowBlock/rowBlock";
+import {Outlet, useNavigate} from "react-router-dom"
+import { createBrowserHistory } from "history";
 
-class BookPage extends Component {
-	state = {
-		selectedItem: 1,
-		error: false,
-	};
+// error= false, selectedItem:
+function  BookPage () {
+	let [error, errorChangeFnc] = useState("false");
+	// let [stateVar, stateChangeFnc] = useState("1");
+	// console.log("stateVar",stateVar);
 
-	getService = new GoTService();
+	const getService = new GoTService();
 
-	componentDidCatch() {
-		console.log(
-			"componentDidCatch have been raised by error on BookPage.js"
-		);
-		this.setState({ error: true });
-	}
+
+	const history = createBrowserHistory();
+	// console.log("history",history);
+	// history.go("/")
+
+	const navigate = useNavigate();
+
+
+	// function componentDidCatch() {
+	// 	console.log(
+	// 		"componentDidCatch have been raised by error on BookPage.js"
+	// 	);
+	// 	this.setState({ error: true });
+	// }
 
 	//принимает индекс в массиве принятых от сервера 10-и персонажей
-	onItemSelected = (index) => {
-		this.setState({ selectedItem: index });
-	};
+	// const onItemSelected = (index) => {
+	// 	this.setState({ selectedItem: index });
+	// };
+	// const onItemSelected = (index) => {
+	// 	stateChangeFnc( stateVar = index );
+	// };
 
-	render() {
-		if (this.state.error) {
-			return (
-				<ErrorMessage
-					messageStr={
-						"Encountered some error in BookPage module"
-					}
-				/>
-			);
-		}
+
+		// if (this.state.error) {
+		// 	return (
+		// 		<ErrorMessage
+		// 			messageStr={
+		// 				"Encountered some error in BookPage module"
+		// 			}
+		// 		/>
+		// 	);
+		// }
 
 		const itemsList = (
+
+			<>
 			<ItemList
-				onElementSelected={this.onItemSelected}
-				getData={this.getService.getAllBooks}
+				// onElementSelected={onItemSelected}
+				onElementSelected={
+					(IDofBookInList)=>{navigate(`/books/${IDofBookInList}`); console.log("navigated")}
+				}
+				getData={getService.getAllBooks}
 				renderItemName={(item) => `${item.name} (${item.numberOfPages})`}
 			/>
+			<Outlet/>
+			</>
 		);
+		// const bookDetails = (
+		// 	<ItemDetails itemID={stateVar.selectedItem} getItemData={getService.getBook}>
+        //         <Field field="numberOfPages" label="Number of pages"/>
+        //         <Field field="released" label="Released"/>
+        //         <Field field="publisher" label="Publisher"/>
+        //     </ItemDetails>
+		// );
 
-		const bookDetails = (
-			<ItemDetails itemID={this.state.selectedItem} getItemData={this.getService.getBook}>
-                <Field field="numberOfPages" label="Number of pages"/>
-                <Field field="released" label="Released"/>
-                <Field field="publisher" label="Publisher"/>
-            </ItemDetails>
-		);
+		// return <RowBlock leftPart={itemsList} rightPart={bookDetails} />;
+		return itemsList;
 
-		return <RowBlock leftPart={itemsList} rightPart={bookDetails} />;
-	}
 }
 
 export default BookPage;

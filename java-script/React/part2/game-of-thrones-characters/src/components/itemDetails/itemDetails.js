@@ -26,6 +26,7 @@ export default class ItemDetails extends Component {
 
 	updateCharacter() {
 		const {getItemData}=this.props;
+		// console.log("getItemData",getItemData);
 		const { itemID } = this.props;
 		// console.log("id ", itemID);
 		if (!itemID) {

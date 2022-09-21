@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { Col, Row, Container, Button } from "react-bootstrap";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route, Outlet } from "react-router-dom";
 import Header from "../header";
 import RandomChar from "../randomChar";
 import GoTService from "../../services/GOT-service";
-import {CharacterPage} from "../pages";
-import {BookPage} from "../pages";
-import {HousePage} from "../pages";
+import { CharacterPage } from "../pages";
+import { HousePage } from "../pages";
+import { BookPage } from "../pages";
+import { BookItem } from "../pages";
 import ErrorMessage from "../errorMessage/errorMessage";
 
 class App extends Component {
@@ -44,39 +45,47 @@ class App extends Component {
 		}
 
 		return (
-			<BrowserRouter>
-				<>
-					<Container>
-						<Header />
-					</Container>
-					<Container>
-						<Row>
-							<Col lg={{ size: 5, offset: 0 }}>
-								{randomCharVisible ? <RandomChar /> : null}
-							</Col>
-						</Row>
-						<Button
-							variant="dark"
-							className="mb-4"
-							onClick={this.toggleRandomChar}
-						>
-							{randomCharVisible
-								? "Hide random character"
-								: "Show random character"}
-						</Button>
+			<>
+				<Container>
+					<Header />
+				</Container>
+				<Container>
+					<Row>
+						<Col lg={{ size: 5, offset: 0 }}>
+							{randomCharVisible ? <RandomChar /> : null}
+						</Col>
+					</Row>
+					<Button
+						variant="dark"
+						className="mb-4"
+						onClick={this.toggleRandomChar}
+					>
+						{randomCharVisible
+							? "Hide random character"
+							: "Show random character"}
+					</Button>
+					<Outlet />
+					<Routes>
+						<Route path="/characters" element={<CharacterPage />} />
+						<Route path="/houses" element={<HousePage />} />
+						<Route path="/books" element={<BookPage />} />
+						<Route path="/books/:idOfBook" element={<BookItem />} />
+						<Route
+							path="*"
+							element={
+								<main
+									style={{ padding: "1rem", color: "white" }}
+								>
+									<p>There's not such page...</p>
+								</main>
+							}
+						/>
+					</Routes>
 
-						<Routes>
-							<Route
-								path="/characters"
-								element={<CharacterPage />}
-							/>
-							<Route path="/books" element={<BookPage />} />
-							<Route path="/houses" element={<HousePage />} />
-						</Routes>
-						{/* <CharacterPage />
+					{/* <CharacterPage />
 						<BookPage />
 						<HousePage /> */}
-						{/* <Row>
+					{/* <Row>
 					<Col md="6">
 						<ItemList onElementSelected={this.onItemSelected}
 									getData={this.getService.getAllBooks}
@@ -96,9 +105,8 @@ class App extends Component {
 						<CharDetails charID={this.state.selectedCharacter} />
 					</Col>
 				</Row> */}
-					</Container>
-				</>
-			</BrowserRouter>
+				</Container>
+			</>
 		);
 	}
 }
