@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Col, Row, Container, Button } from "react-bootstrap";
-import { Routes, Route, Outlet } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Header from "../header";
 import RandomChar from "../randomChar";
 import GoTService from "../../services/GOT-service";
@@ -12,7 +12,7 @@ import ErrorMessage from "../errorMessage/errorMessage";
 
 class App extends Component {
 	state = {
-		randomCharVisible: true,
+		randomCharVisible: false,
 
 		error: false,
 	};
@@ -32,6 +32,10 @@ class App extends Component {
 	};
 
 	//30:00
+
+	componentDidUpdate(){
+		console.log("unmounted")
+	}
 
 	render() {
 		const { randomCharVisible, error } = this.state;
@@ -64,12 +68,13 @@ class App extends Component {
 							? "Hide random character"
 							: "Show random character"}
 					</Button>
-					<Outlet />
+
 					<Routes>
-						<Route path="/characters" element={<CharacterPage />} />
-						<Route path="/houses" element={<HousePage />} />
-						<Route path="/books" element={<BookPage />} />
-						<Route path="/books/:idOfBook" element={<BookItem />} />
+						<Route index element={<CharacterPage />} />
+						<Route path="characters" element={<CharacterPage />} />
+						<Route path="houses" element={<HousePage />} />
+						<Route path="books" element={<BookPage />} />
+						<Route path="books/:idOfBook" element={<BookItem />} />
 						<Route
 							path="*"
 							element={

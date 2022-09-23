@@ -16,7 +16,7 @@ function  BookPage () {
 	const getService = new GoTService();
 
 
-	const history = createBrowserHistory();
+	const browserHistory = createBrowserHistory();
 	// console.log("history",history);
 	// history.go("/")
 
