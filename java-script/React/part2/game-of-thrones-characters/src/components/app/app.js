@@ -33,8 +33,8 @@ class App extends Component {
 
 	//30:00
 
-	componentDidUpdate(){
-		console.log("unmounted")
+	componentDidUpdate() {
+		console.log("unmounted");
 	}
 
 	render() {
@@ -56,7 +56,9 @@ class App extends Component {
 				<Container>
 					<Row>
 						<Col lg={{ size: 5, offset: 0 }}>
-							{randomCharVisible ? <RandomChar /> : null}
+							{randomCharVisible ? (
+								<RandomChar updateInterval={5000} />
+							) : null}
 						</Col>
 					</Row>
 					<Button
